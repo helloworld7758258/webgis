@@ -10,13 +10,13 @@ import javax.persistence.Id;
 import javax.persistence.Table;
 
 /**
- * Geoobjects planning areas object for hibernate layer model.
+ * Geoobjects planning lines object for hibernate layer model.
  *
  * @author oliver
  */
 @Entity
-@Table(name = "geoobject_pa")
-public class Geoobject_pa {
+@Table(name = "geoobject_pl")
+public class Geoobject_pl {
 
 	@Id
 	@GeneratedValue(strategy = javax.persistence.GenerationType.IDENTITY)

@@ -13,6 +13,8 @@
 		<property name="show_sql">true</property>
 		
 		<mapping class="com.hnee.webgis.server.Geoobject_pa" />
+		<mapping class="com.hnee.webgis.server.Geoobject_pl" />
+		<mapping class="com.hnee.webgis.server.Geoobject_pp" />
 		
 	</session-factory>
 </hibernate-configuration>

@@ -66,24 +66,26 @@ http://www.springframework.org/schema/util http://www.springframework.org/schema
 		</property>
 		<property name="initialBounds">
 			<bean class="org.geomajas.geometry.Bbox">
-                <property name="x" value="1428796.31"/>
-                <property name="y" value="6983605.72"/>
-                <property name="width" value="5000"/>
-                <property name="height" value="5000"/>
+				<property name="x" value="1270542.19" />
+				<property name="y" value="6678694.81" />
+				<property name="width" value="371992.47" />
+				<property name="height" value="408680.57" />
 			</bean>
 		</property>
 		<property name="maxBounds">
 			<bean class="org.geomajas.geometry.Bbox">
-                <property name="x" value="1270542.19"/>
-                <property name="y" value="6678694.81"/>
-                <property name="width" value="371992.47"/>
-                <property name="height" value="408680.57"/>
+				<property name="x" value="1270542.19" />
+				<property name="y" value="6678694.81" />
+				<property name="width" value="371992.47" />
+				<property name="height" value="408680.57" />
 			</bean>
 		</property>
 		<property name="layers">
 			<list>
 				<ref bean="clientLayerOsm" />
 				<ref bean="clientLayerPlanningAreas" />
+				<ref bean="clientLayerPlanningLines" />
+				<ref bean="clientLayerPlanningPoints" />
 			</list>
 		</property>
 		<property name="toolbar">
@@ -120,6 +122,8 @@ http://www.springframework.org/schema/util http://www.springframework.org/schema
 							<list>
 								<ref bean="clientLayerOsm" />
 								<ref bean="clientLayerPlanningAreas" />
+								<ref bean="clientLayerPlanningLines" />
+								<ref bean="clientLayerPlanningPoints" />
 							</list>
 						</property>
 						<property name="expanded" value="true" />
