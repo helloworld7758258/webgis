@@ -20,13 +20,14 @@ public class Geoobject_pa {
 
 	@Id
 	@GeneratedValue(strategy = javax.persistence.GenerationType.IDENTITY)
-	@Column(name = "gid")
+	@Column(name = "GID")
 	private Long id;
 	
-	@Column(name="name")
+	@Column(name="NAME")
 	private String name;
 	
 	@Type(type = "org.hibernatespatial.GeometryUserType")
+	@Column(name="GEOM")
 	private Geometry geometry;
 
 	public Long getId() {

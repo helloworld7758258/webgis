@@ -21,8 +21,8 @@ http://www.springframework.org/schema/tx http://www.springframework.org/schema/t
 	<!-- Hibernate configuration -->
 
 	<!-- DataSource bean, using BoneCP as connection pool -->
-	<bean id="postgisDataSource" class="com.jolbox.bonecp.BoneCPDataSource" destroy-method="close">
-	   <property name="driverClass" value="org.postgresql.Driver" />
+	<bean id="geodbDataSource" class="com.jolbox.bonecp.BoneCPDataSource" destroy-method="close">
+	   <property name="driverClass" value="org.h2.Driver" />
 	   <property name="jdbcUrl" value="jdbc:postgresql://127.0.0.1:5432/app" />
 	   <property name="username" value="app"/>
 	   <property name="password" value="app"/>
@@ -38,7 +38,7 @@ http://www.springframework.org/schema/tx http://www.springframework.org/schema/t
 
 	<!-- Hibernate SessionFactory -->
 	<bean id="postgisSessionFactory" class="org.springframework.orm.hibernate3.LocalSessionFactoryBean">
-		<property name="dataSource" ref="postgisDataSource" />
+		<property name="dataSource" ref="geodbDataSource" />
 		<property name="configLocation" value="WEB-INF/planning/hibernate.cfg.xml" />
 		<property name="configurationClass" value="org.hibernate.cfg.AnnotationConfiguration" />
 	</bean>
