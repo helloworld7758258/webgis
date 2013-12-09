@@ -12,10 +12,10 @@ http://www.springframework.org/schema/tx http://www.springframework.org/schema/t
 		<property name="layerInfo" ref="layerPlanningLinesInfo"/>
 		<property name="featureModel">
 			<bean class="org.geomajas.layer.hibernate.HibernateFeatureModel">
-				<property name="sessionFactory" ref="postgisSessionFactory" />
+				<property name="sessionFactory" ref="geodbSessionFactory" />
 			</bean>
 		</property>
-		<property name="sessionFactory" ref="postgisSessionFactory" />
+		<property name="sessionFactory" ref="geodbSessionFactory" />
 	</bean>
 
 	<bean name="layerPlanningLinesInfo" class="org.geomajas.configuration.VectorLayerInfo">

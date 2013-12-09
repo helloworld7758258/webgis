@@ -15,18 +15,19 @@ import javax.persistence.Table;
  * @author oliver
  */
 @Entity
-@Table(name = "geoobject_pl")
+@Table(name = "GEOOBJECT_PL")
 public class Geoobject_pl {
 
 	@Id
 	@GeneratedValue(strategy = javax.persistence.GenerationType.IDENTITY)
-	@Column(name = "gid")
+	@Column(name = "GID")
 	private Long id;
 	
-	@Column(name="name")
+	@Column(name="NAME")
 	private String name;
 	
 	@Type(type = "org.hibernatespatial.GeometryUserType")
+	@Column(name="GEOM")
 	private Geometry geometry;
 
 	public Long getId() {

@@ -15,7 +15,7 @@ import javax.persistence.Table;
  * @author oliver
  */
 @Entity
-@Table(name = "geoobject_pa")
+@Table(name = "GEOOBJECT_PA")
 public class Geoobject_pa {
 
 	@Id

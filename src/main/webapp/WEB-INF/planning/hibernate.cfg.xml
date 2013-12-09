@@ -6,9 +6,9 @@
 <hibernate-configuration>
 	<session-factory>
 		
-		<property name="hibernate.dialect">org.hibernatespatial.postgis.PostgisDialect</property>
+		<property name="hibernate.dialect">org.hibernatespatial.geodb.GeoDBDialect</property>
 		<property name="cache.provider_class">org.hibernate.cache.HashtableCacheProvider</property>
-
+		<property name="hibernate.hbm2ddl.import_files_sql_extractor">org.hibernate.tool.hbm2ddl.MultipleLinesSqlCommandExtractor</property>
 		<!-- Echo all executed SQL to stdout -->
 		<property name="show_sql">true</property>
 		

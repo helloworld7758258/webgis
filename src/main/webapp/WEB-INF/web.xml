@@ -32,7 +32,6 @@
 			WEB-INF/tools.xml
 			
 			<!-- Planning areas -->
-			<!--
 			WEB-INF/planning/mapMain.xml
 			WEB-INF/planning/clientLayerPlanningAreas.xml
 			WEB-INF/planning/clientLayerPlanningLines.xml
@@ -41,7 +40,6 @@
 			WEB-INF/planning/layerPlanningLines.xml
 			WEB-INF/planning/layerPlanningPoints.xml
 			WEB-INF/planning/spring-hibernate.xml
-			-->
 			<!-- To use Roads layer stored in database through hibernate layer, uncomment the following -->
 			<!--
 			WEB-INF/example/hibernate/mapMain.xml
