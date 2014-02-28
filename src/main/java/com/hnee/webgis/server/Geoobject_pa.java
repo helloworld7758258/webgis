@@ -11,7 +11,7 @@ import javax.persistence.Table;
 
 /**
  * Geoobjects planning areas object for hibernate layer model.
- *
+ * 
  * @author oliver
  */
 @Entity
@@ -22,12 +22,12 @@ public class Geoobject_pa {
 	@GeneratedValue(strategy = javax.persistence.GenerationType.IDENTITY)
 	@Column(name = "GID")
 	private Long id;
-	
-	@Column(name="NAME")
+
+	@Column(name = "NAME")
 	private String name;
-	
+
 	@Type(type = "org.hibernatespatial.GeometryUserType")
-	@Column(name="GEOM")
+	@Column(name = "GEOM")
 	private Geometry geometry;
 
 	public Long getId() {
@@ -53,6 +53,5 @@ public class Geoobject_pa {
 	public void setName(String name) {
 		this.name = name;
 	}
-	
 
 }

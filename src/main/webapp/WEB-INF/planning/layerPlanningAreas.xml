@@ -19,7 +19,7 @@ http://www.springframework.org/schema/tx http://www.springframework.org/schema/t
 	</bean>
 
 	<bean name="layerPlanningAreasInfo" class="org.geomajas.configuration.VectorLayerInfo">
-		<property name="layerType" value="MULTIPOLYGON"/>
+		<property name="layerType" value="POLYGON"/>
 		<property name="crs" value="EPSG:325833"/>
 		<property name="maxExtent">
 			<bean class="org.geomajas.geometry.Bbox">
@@ -44,27 +44,27 @@ http://www.springframework.org/schema/tx http://www.springframework.org/schema/t
 					<property name="name" value="Planungsflächen" />
 					<property name="fillColor" value="#FFFFFF" />
 					<property name="fillOpacity" value="0" />
-					<property name="strokeColor" value="#998811" />
+					<property name="strokeColor" value="#000000" />
 					<property name="strokeOpacity" value="1" />
-					<property name="strokeWidth" value="4" />
+					<property name="strokeWidth" value="1" />
 				</bean>
 			</list>
 		</property>
 		<property name="labelStyle">
 			<bean class="org.geomajas.configuration.LabelStyleInfo">
-				<property name="labelAttributeName" value="id" />
+				<property name="labelAttributeName" value="name" />
 				<property name="fontStyle">
 					<bean class="org.geomajas.configuration.FontStyleInfo">
-						<property name="color" value="#998811" />
+						<property name="color" value="#FEFEFE" />
 						<property name="opacity" value="1" />
 					</bean>
 				</property>
 				<property name="backgroundStyle">
 					<bean class="org.geomajas.configuration.FeatureStyleInfo">
-						<property name="fillColor" value="#000000" />
-						<property name="fillOpacity" value=".7" />
-						<property name="strokeColor" value="#998811" />
-						<property name="strokeOpacity" value="1" />
+						<property name="fillColor" value="#888888" />
+						<property name="fillOpacity" value=".8" />
+						<property name="strokeColor" value="#CC0000" />
+						<property name="strokeOpacity" value=".7" />
 						<property name="strokeWidth" value="1" />
 					</bean>
 				</property>
@@ -76,7 +76,7 @@ http://www.springframework.org/schema/tx http://www.springframework.org/schema/t
 		<property name="dataSourceName" value="com.hnee.webgis.server.Geoobject_pa" />
 		<property name="identifier">
 			<bean class="org.geomajas.configuration.PrimitiveAttributeInfo">
-				<property name="label" value="id" />
+				<property name="label" value="Id" />
 				<property name="name" value="id" />
 				<property name="type" value="LONG" />
 			</bean>

@@ -11,18 +11,26 @@
 
 package com.hnee.webgis.client;
 
-import com.hnee.webgis.client.gui.SearchPanel;
-import com.hnee.webgis.client.i18n.ApplicationMessages;
-import org.geomajas.gwt.client.gfx.style.ShapeStyle;
+import java.util.ArrayList;
+import java.util.List;
+
+import org.geomajas.configuration.client.ClientVectorLayerInfo;
+import org.geomajas.global.GeomajasConstant;
+import org.geomajas.gwt.client.map.MapView;
+import org.geomajas.gwt.client.map.feature.Feature;
+import org.geomajas.gwt.client.map.feature.LazyLoadCallback;
+import org.geomajas.gwt.client.map.layer.VectorLayer;
+import org.geomajas.gwt.client.map.store.VectorLayerStore;
+import org.geomajas.gwt.client.spatial.Bbox;
 import org.geomajas.gwt.client.util.WidgetLayout;
 import org.geomajas.gwt.client.widget.LayerTree;
 import org.geomajas.gwt.client.widget.Legend;
 import org.geomajas.gwt.client.widget.MapWidget;
-import org.geomajas.gwt.client.widget.OverviewMap;
 import org.geomajas.gwt.client.widget.Toolbar;
 
 import com.google.gwt.core.client.EntryPoint;
 import com.google.gwt.core.client.GWT;
+import com.hnee.webgis.client.i18n.ApplicationMessages;
 import com.smartgwt.client.types.VisibilityMode;
 import com.smartgwt.client.widgets.Label;
 import com.smartgwt.client.widgets.layout.HLayout;
@@ -31,25 +39,26 @@ import com.smartgwt.client.widgets.layout.SectionStackSection;
 import com.smartgwt.client.widgets.layout.VLayout;
 
 /**
- * Entry point and main class for GWT application. This class defines the layout and functionality of this application.
+ * Entry point and main class for GWT application. This class defines the layout
+ * and functionality of this application.
  * 
  * @author geomajas-gwt-archetype
  */
 public class Application implements EntryPoint {
 
-	private OverviewMap overviewMap;
-
 	private Legend legend;
 
-	private ApplicationMessages messages = GWT.create(ApplicationMessages.class);
+	private ApplicationMessages messages = GWT
+			.create(ApplicationMessages.class);
 
 	public Application() {
 	}
 
+	@Override
 	public void onModuleLoad() {
-		WidgetLayout.legendVectorRowHeight=10;
-		WidgetLayout.legendRasterRowHeight=10;
-		
+		WidgetLayout.legendVectorRowHeight = 10;
+		WidgetLayout.legendRasterRowHeight = 10;
+
 		VLayout mainLayout = new VLayout();
 		mainLayout.setWidth100();
 		mainLayout.setHeight100();
@@ -66,6 +75,7 @@ public class Application implements EntryPoint {
 		// ---------------------------------------------------------------------
 		final MapWidget map = new MapWidget("mapMain", "app");
 		final Toolbar toolbar = new Toolbar(map);
+
 		toolbar.setButtonSize(WidgetLayout.toolbarSmallButtonSize);
 		toolbar.setBackgroundColor("#647386");
 		toolbar.setBackgroundImage("");
@@ -73,8 +83,14 @@ public class Application implements EntryPoint {
 
 		map.getMapModel().runWhenInitialized(new Runnable() {
 
+			@Override
 			public void run() {
-				Label title = new Label(messages.applicationTitle("1.13.10"));
+				// Add a custom action button
+				CallPlanningEditorToolbarAction action = new CallPlanningEditorToolbarAction(
+						map);
+				toolbar.addActionButton(action);
+
+				Label title = new Label("GWT GeoMajas GIS Editor");
 				title.setStyleName("appTitle");
 				title.setWidth(260);
 				toolbar.addFill();
@@ -94,10 +110,6 @@ public class Application implements EntryPoint {
 
 		layout.addMember(leftLayout);
 
-		// Add a search panel to the top-right of the map:
-		SearchPanel searchPanel = new SearchPanel(map.getMapModel(), mapLayout);
-		mapLayout.addChild(searchPanel);
-		
 		// ---------------------------------------------------------------------
 		// Create the right-side (overview map, layer-tree, legend):
 		// ---------------------------------------------------------------------
@@ -109,29 +121,22 @@ public class Application implements EntryPoint {
 		sectionStack.setCanResizeSections(false);
 		sectionStack.setSize("250px", "100%");
 
-		// Overview map layout:
-		SectionStackSection section1 = new SectionStackSection(messages.overviewMapTitle());
+		// LayerTree layout:
+		SectionStackSection section1 = new SectionStackSection(
+				messages.layerTreeTitle());
 		section1.setExpanded(true);
-		overviewMap = new OverviewMap("mapOverview", "app", map, false, true);
-		overviewMap.setTargetMaxExtentRectangleStyle(new ShapeStyle("#888888", 0.3f, "#666666", 0.75f, 2));
-		overviewMap.setRectangleStyle(new ShapeStyle("#6699FF", 0.3f, "#6699CC", 1f, 2));
-		section1.addItem(overviewMap);
+		LayerTree layerTree = new LayerTree(map);
+		section1.addItem(layerTree);
 		sectionStack.addSection(section1);
 
-		// LayerTree layout:
-		SectionStackSection section2 = new SectionStackSection(messages.layerTreeTitle());
-		section2.setExpanded(true);
-		LayerTree layerTree = new LayerTree(map);
-		section2.addItem(layerTree);
-		sectionStack.addSection(section2);
-
 		// Legend layout:
-		SectionStackSection section3 = new SectionStackSection(messages.legendTitle());
-		section3.setExpanded(true);
+		SectionStackSection section2 = new SectionStackSection(
+				messages.legendTitle());
+		section2.setExpanded(true);
 		legend = new Legend(map.getMapModel());
 		legend.setBackgroundColor("#FFFFFF");
-		section3.addItem(legend);
-		sectionStack.addSection(section3);
+		section2.addItem(legend);
+		sectionStack.addSection(section2);
 
 		// Putting the right side layouts together:
 		layout.addMember(sectionStack);
@@ -143,8 +148,10 @@ public class Application implements EntryPoint {
 		mainLayout.draw();
 
 		// Install a loading screen.
-		// This only works if the application initially shows a map with at least 1 vector layer:
-		// LoadingScreen loadScreen = new LoadingScreen(map, "Geomajas GWT application");
+		// This only works if the application initially shows a map with at
+		// least 1 vector layer:
+		// LoadingScreen loadScreen = new LoadingScreen(map,
+		// "Geomajas GWT application");
 		// loadScreen.draw();
 
 		// Then initialize:
@@ -153,6 +160,29 @@ public class Application implements EntryPoint {
 
 	private void initialize() {
 		legend.setHeight(200);
-		overviewMap.setHeight(200);
+	}
+	
+	private void zoomToLayer(final MapWidget map) {
+		VectorLayer layer = map.getMapModel().getVectorLayer("clientLayerPlanningAreas");
+		VectorLayerStore featureStore = layer.getFeatureStore();
+		featureStore.getFeatures(GeomajasConstant.FEATURE_INCLUDE_GEOMETRY,
+				new LazyLoadCallback() {
+
+					@Override
+					public void execute(List<Feature> response) {
+						boolean success = false;
+						List<Feature> features = new ArrayList<Feature>();
+						for (Feature feature : response) {
+							features.add(feature);
+							success = true;
+						}
+
+						// only pan when their where really some items selected
+						if (success) {
+							map.getMapModel().zoomToFeatures(features);
+						}
+					}
+				});
+		
 	}
 }

@@ -19,7 +19,7 @@ http://www.springframework.org/schema/tx http://www.springframework.org/schema/t
 	</bean>
 
 	<bean name="layerPlanningLinesInfo" class="org.geomajas.configuration.VectorLayerInfo">
-		<property name="layerType" value="MULTIPOLYGON"/>
+		<property name="layerType" value="MULTILINESTRING"/>
 		<property name="crs" value="EPSG:325833"/>
 		<property name="maxExtent">
 			<bean class="org.geomajas.geometry.Bbox">
@@ -44,27 +44,27 @@ http://www.springframework.org/schema/tx http://www.springframework.org/schema/t
 					<property name="name" value="Planungslinien" />
 					<property name="fillColor" value="#FFFFFF" />
 					<property name="fillOpacity" value="0" />
-					<property name="strokeColor" value="#998811" />
+					<property name="strokeColor" value="#941515" />
 					<property name="strokeOpacity" value="1" />
-					<property name="strokeWidth" value="4" />
+					<property name="strokeWidth" value="1" />
 				</bean>
 			</list>
 		</property>
 		<property name="labelStyle">
 			<bean class="org.geomajas.configuration.LabelStyleInfo">
-				<property name="labelAttributeName" value="id" />
+				<property name="labelAttributeName" value="name" />
 				<property name="fontStyle">
 					<bean class="org.geomajas.configuration.FontStyleInfo">
-						<property name="color" value="#998811" />
+						<property name="color" value="#FEFEFE" />
 						<property name="opacity" value="1" />
 					</bean>
 				</property>
 				<property name="backgroundStyle">
 					<bean class="org.geomajas.configuration.FeatureStyleInfo">
-						<property name="fillColor" value="#000000" />
-						<property name="fillOpacity" value=".7" />
-						<property name="strokeColor" value="#998811" />
-						<property name="strokeOpacity" value="1" />
+						<property name="fillColor" value="#888888" />
+						<property name="fillOpacity" value=".8" />
+						<property name="strokeColor" value="#CC0000" />
+						<property name="strokeOpacity" value=".7" />
 						<property name="strokeWidth" value="1" />
 					</bean>
 				</property>

@@ -23,7 +23,7 @@ http://www.springframework.org/schema/tx http://www.springframework.org/schema/t
 	<!-- DataSource bean -->
 	<bean id="geodbDataSource" class="org.apache.commons.dbcp.BasicDataSource" destroy-method="close">
 	   <property name="driverClassName" value="org.h2.Driver" />
-	   <property name="url" value="jdbc:h2:file:C:/obienert/databases/geodb/planningdata" />
+	   <property name="url" value="jdbc:h2:file:WEB-INF/database/planningdata" />
 	   <property name="username" value=""/>
 	   <property name="password" value=""/>
 	</bean>
@@ -31,7 +31,7 @@ http://www.springframework.org/schema/tx http://www.springframework.org/schema/t
 	<!-- Hibernate SessionFactory -->
 	<bean id="geodbSessionFactory" class="org.springframework.orm.hibernate3.LocalSessionFactoryBean">
 		<property name="dataSource" ref="geodbDataSource" />
-		<property name="configLocation" value="WEB-INF/planning/hibernate.cfg.xml" />
+		<property name="configLocation" value="WEB-INF/hibernate.cfg.xml" />
 		<property name="configurationClass" value="org.hibernate.cfg.AnnotationConfiguration" />
 	</bean>
 

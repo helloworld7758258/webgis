@@ -111,6 +111,7 @@ public class SearchPanel extends VLayout {
 		// Add a handler that makes sure this widget is placed at the correct location when the parent widget resizes:
 		parent.addResizedHandler(new ResizedHandler() {
 
+			@Override
 			public void onResized(ResizedEvent event) {
 				setTop(TOP_OFFSET);
 				setLeft(parent.getWidth() - BTN_WIDTH - 8);
@@ -194,6 +195,7 @@ public class SearchPanel extends VLayout {
 		searchButton.setRadioGroup("panels");
 		searchButton.addClickHandler(new ClickHandler() {
 
+			@Override
 			public void onClick(ClickEvent event) {
 				if (isOpen(searchPanel)) {
 					hidePanel();
@@ -210,6 +212,7 @@ public class SearchPanel extends VLayout {
 		gridButton.setRadioGroup("panels");
 		gridButton.addClickHandler(new ClickHandler() {
 
+			@Override
 			public void onClick(ClickEvent event) {
 				if (isOpen(gridPanel)) {
 					hidePanel();
@@ -223,6 +226,7 @@ public class SearchPanel extends VLayout {
 		closeBtn = new Img("[ISOMORPHIC]/images/close.png", BTN_WIDTH, BTN_WIDTH);
 		closeBtn.addClickHandler(new ClickHandler() {
 
+			@Override
 			public void onClick(ClickEvent event) {
 				hidePanel();
 			}
@@ -252,6 +256,7 @@ public class SearchPanel extends VLayout {
 		searchWidget.addSearchHandler(new DefaultSearchHandler(featureListGrid) {
 
 			// After the features have been added to the FeatureListGrid, make sure the tab with the grid is visible:
+			@Override
 			public void afterSearch() {
 				showPanel(gridPanel);
 			}
@@ -265,6 +270,7 @@ public class SearchPanel extends VLayout {
 		mapModel.addMapModelChangedHandler(new MapModelChangedHandler() {
 
 			// On map initialization: Select the countries layer in the search panel.
+			@Override
 			public void onMapModelChanged(MapModelChangedEvent event) {
 				VectorLayer layer = mapModel.getVectorLayers().get(0);
 				searchWidget.setLayer(layer);

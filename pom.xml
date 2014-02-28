@@ -13,7 +13,7 @@
 	<artifactId>webgis</artifactId>
 	<version>0.0.1-SNAPSHOT</version>
 	<packaging>war</packaging>
-	<name>Planungseditor</name>
+	<name>Pepgis Editors (WebGIS)</name>
 	<description>Geomajas GWT application</description>
 	<url>http://www.geomajas.org/</url>
 
@@ -60,6 +60,7 @@
 				<type>pom</type>
 				<scope>import</scope>
 			</dependency>
+
 		</dependencies>
 	</dependencyManagement>
 	<dependencies>
@@ -74,28 +75,12 @@
 			<artifactId>geomajas-gwt-client</artifactId>
 		</dependency>
 		<dependency>
-			<groupId>org.geomajas.plugin</groupId>
-			<artifactId>geomajas-layer-openstreetmap</artifactId>
-		</dependency>
-		<dependency>
-			<groupId>org.geomajas.plugin</groupId>
-			<artifactId>geomajas-layer-geotools</artifactId>
-		</dependency>
-		<dependency>
-			<groupId>org.geomajas.plugin</groupId>
-			<artifactId>geomajas-layer-wms</artifactId>
-		</dependency>
-		<dependency>
-			<groupId>org.geomajas.plugin</groupId> <!-- needed because of problem with WMS layer -->
-			<artifactId>geomajas-plugin-caching</artifactId>
-		</dependency>
-		<dependency>
 			<groupId>org.geomajas</groupId>
 			<artifactId>geomajas-testdata</artifactId>
 		</dependency>
 
-		<!-- Hibernate layer can be removed if not needed, but the "Road" class 
-			needs the Hibernate stuff -->
+		<!-- Hibernate with h2/Geodb -->
+
 		<dependency>
 			<groupId>org.geomajas.plugin</groupId>
 			<artifactId>geomajas-layer-hibernate</artifactId>
@@ -108,48 +93,26 @@
 				</exclusion>
 			</exclusions>
 		</dependency>
-		<!-- uncomment if you want to use Hibernate with postgis, for another db 
-			you will need similar dependencies -->
-		<!-- (see also web.xml for changing the configuration) -->
-		<!-- <dependency> <groupId>org.hibernatespatial</groupId> <artifactId>hibernate-spatial-postgis</artifactId> 
-			</dependency> <dependency> <groupId>org.postgis</groupId> <artifactId>postgis-jdbc</artifactId> 
-			</dependency> <dependency> <groupId>postgresql</groupId> <artifactId>postgresql</artifactId> 
-			</dependency> <dependency> <groupId>com.jolbox</groupId> <artifactId>bonecp</artifactId> 
-			<version>0.7.1-rc3</version> </dependency> -->
-		<!-- uncomment if you want to use Hibernate with sqlserver, for another 
-			db you will need similar dependencies -->
-		<!-- <dependency> <groupId>org.hibernatespatial</groupId> <artifactId>hibernate-spatial-sqlserver</artifactId> 
-			<version>1.0</version> </dependency> <dependency> <groupId>com.microsoft.sqlserver</groupId> 
-			<artifactId>sqljdbc4</artifactId> <version>4.0</version> </dependency> -->
-		<!-- uncomment if you want to use geotools with postgis, for another db 
-			you will need similar dependencies -->
-		<!-- <dependency> <groupId>org.postgis</groupId> <artifactId>postgis-jdbc</artifactId> 
-			</dependency> <dependency> <groupId>postgresql</groupId> <artifactId>postgresql</artifactId> 
-			</dependency> -->
-		<!-- uncomment if you want to use geotools with sqlserver, for another 
-			db you will need similar dependencies -->
-		<!-- <dependency> <groupId>org.geotools.jdbc</groupId> <artifactId>gt-jdbc-sqlserver</artifactId> 
-			<version>${geotools-version}</version> </dependency> <dependency> <groupId>com.microsoft.sqlserver</groupId> 
-			<artifactId>sqljdbc4</artifactId> <version>4.0</version> </dependency> -->
-
-		<!-- Hibernate with h2/Geodb -->
 
 		<dependency>
 			<groupId>org.hibernatespatial</groupId>
 			<artifactId>hibernate-spatial-h2-geodb</artifactId>
 			<version>1.1.1</version>
 		</dependency>
+
 		<dependency>
 			<groupId>com.jolbox</groupId>
 			<artifactId>bonecp</artifactId>
 			<version>0.7.1-rc3</version>
 		</dependency>
+
 		<!-- Google dependencies -->
 		<dependency>
 			<groupId>com.google.gwt</groupId>
 			<artifactId>gwt-user</artifactId>
 			<scope>provided</scope>
 		</dependency>
+
 		<dependency>
 			<groupId>com.google.gwt</groupId>
 			<artifactId>gwt-servlet</artifactId>
