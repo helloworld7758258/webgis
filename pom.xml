@@ -61,6 +61,13 @@
 				<scope>import</scope>
 			</dependency>
 
+			<dependency>
+				<groupId>org.geomajas.plugin</groupId>
+				<artifactId>geomajas-widget-advancedviews-all</artifactId>
+				<version>1.0.0-M3</version>
+				<type>pom</type>
+				<scope>import</scope>
+			</dependency>
 		</dependencies>
 	</dependencyManagement>
 	<dependencies>
@@ -77,6 +84,15 @@
 		<dependency>
 			<groupId>org.geomajas</groupId>
 			<artifactId>geomajas-testdata</artifactId>
+		</dependency>
+
+		<dependency>
+			<groupId>org.geomajas.widget</groupId>
+			<artifactId>geomajas-widget-advancedviews</artifactId>
+		</dependency>
+		<dependency>
+			<groupId>org.geomajas.widget</groupId>
+			<artifactId>geomajas-widget-advancedviews-gwt</artifactId>
 		</dependency>
 
 		<!-- Hibernate with h2/Geodb -->
@@ -166,7 +182,7 @@
 				<version>6.1.20</version>
 				<configuration>
 					<webAppConfig>
-						<contextPath>/</contextPath>
+						<contextPath>/webgis</contextPath>
 						<baseResource implementation="org.mortbay.resource.ResourceCollection">
 							<!-- need both the webapp dir and location where GWT puts stuff -->
 							<resourcesAsCSV>${basedir}/src/main/webapp,${project.build.directory}/${project.build.finalName}</resourcesAsCSV>
@@ -175,6 +191,29 @@
 					<reload>manual</reload>
 				</configuration>
 			</plugin>
+			
+			<!-- Run the application using cargo:deploy -->
+            <plugin>
+                <groupId>org.codehaus.cargo</groupId>
+                <artifactId>cargo-maven2-plugin</artifactId>
+                <version>1.4.7</version>
+                <configuration>
+                    <container>
+                        <containerId>tomcat7x</containerId>
+                        <type>remote</type>
+                    </container>
+                    <configuration>
+                        <type>runtime</type>
+                        <properties>
+                            <cargo.hostname>localhost</cargo.hostname>
+                            <cargo.servlet.port>8080</cargo.servlet.port>
+                        </properties>
+                    </configuration>
+                    <deployer>
+                        <type>remote</type>
+                    </deployer>
+                </configuration>
+            </plugin>
 
 			<!-- some default config, added to in profiles -->
 			<plugin>
@@ -234,7 +273,7 @@
 				<configuration>
 					<filesets>
 						<fileset>
-							<directory>src/main/webapp/Application</directory>
+							<directory>src/main/webapp/webgis</directory>
 						</fileset>
 					</filesets>
 				</configuration>

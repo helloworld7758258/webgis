@@ -23,7 +23,7 @@ http://www.springframework.org/schema/tx http://www.springframework.org/schema/t
 	<!-- DataSource bean -->
 	<bean id="geodbDataSource" class="org.apache.commons.dbcp.BasicDataSource" destroy-method="close">
 	   <property name="driverClassName" value="org.h2.Driver" />
-	   <property name="url" value="jdbc:h2:file:WEB-INF/database/planningdata" />
+	   <property name="url" value="jdbc:h2:/home/oliver/databases/geodb/planningdata;AUTO_SERVER=TRUE" />
 	   <property name="username" value=""/>
 	   <property name="password" value=""/>
 	</bean>

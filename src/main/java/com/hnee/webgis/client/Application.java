@@ -31,7 +31,9 @@ import org.geomajas.gwt.client.widget.Toolbar;
 import com.google.gwt.core.client.EntryPoint;
 import com.google.gwt.core.client.GWT;
 import com.hnee.webgis.client.i18n.ApplicationMessages;
+import com.smartgwt.client.types.ContentsType;
 import com.smartgwt.client.types.VisibilityMode;
+import com.smartgwt.client.widgets.HTMLPane;
 import com.smartgwt.client.widgets.Label;
 import com.smartgwt.client.widgets.layout.HLayout;
 import com.smartgwt.client.widgets.layout.SectionStack;
@@ -67,11 +69,20 @@ public class Application implements EntryPoint {
 		HLayout layout = new HLayout();
 		layout.setWidth100();
 		layout.setHeight100();
-		layout.setMembersMargin(10);
-		layout.setMargin(10);
+		layout.setMembersMargin(5);
+		layout.setMargin(5);
+		
+		// ---------------------------------------------------------------------
+		// Create the left-side (data editor):
+		// ---------------------------------------------------------------------
+		final HTMLPane htmlPane = new HTMLPane();
+		htmlPane.setShowEdges(true);
+		htmlPane.setContentsURL("http://localhost:8080/hnee/planungseditor");
+		htmlPane.setContentsType(ContentsType.PAGE);
+		layout.addMember(htmlPane);  
 
 		// ---------------------------------------------------------------------
-		// Create the left-side (map and tabs):
+		// Create the map layout (map and tabs):
 		// ---------------------------------------------------------------------
 		final MapWidget map = new MapWidget("mapMain", "app");
 		final Toolbar toolbar = new Toolbar(map);
@@ -87,7 +98,7 @@ public class Application implements EntryPoint {
 			public void run() {
 				// Add a custom action button
 				CallPlanningEditorToolbarAction action = new CallPlanningEditorToolbarAction(
-						map);
+						map, htmlPane);
 				toolbar.addActionButton(action);
 
 				Label title = new Label("GWT GeoMajas GIS Editor");
@@ -104,8 +115,8 @@ public class Application implements EntryPoint {
 		mapLayout.setHeight("65%");
 
 		VLayout leftLayout = new VLayout();
-		leftLayout.setBorder("10px solid #777777");
-		leftLayout.setStyleName("round_corner");
+		leftLayout.setBorder("2px solid #455469");
+		leftLayout.setStyleName("applicationLayoutCenter");
 		leftLayout.addMember(mapLayout);
 
 		layout.addMember(leftLayout);
@@ -114,8 +125,8 @@ public class Application implements EntryPoint {
 		// Create the right-side (overview map, layer-tree, legend):
 		// ---------------------------------------------------------------------
 		final SectionStack sectionStack = new SectionStack();
-		sectionStack.setBorder("10px solid #777777");
-		sectionStack.setStyleName("round_corner");
+		sectionStack.setBorder("2px solid #455469");
+		sectionStack.setStyleName("applicationLayoutCenter");
 		sectionStack.setVisibilityMode(VisibilityMode.MULTIPLE);
 		sectionStack.setCanReorderSections(true);
 		sectionStack.setCanResizeSections(false);
@@ -162,27 +173,4 @@ public class Application implements EntryPoint {
 		legend.setHeight(200);
 	}
 	
-	private void zoomToLayer(final MapWidget map) {
-		VectorLayer layer = map.getMapModel().getVectorLayer("clientLayerPlanningAreas");
-		VectorLayerStore featureStore = layer.getFeatureStore();
-		featureStore.getFeatures(GeomajasConstant.FEATURE_INCLUDE_GEOMETRY,
-				new LazyLoadCallback() {
-
-					@Override
-					public void execute(List<Feature> response) {
-						boolean success = false;
-						List<Feature> features = new ArrayList<Feature>();
-						for (Feature feature : response) {
-							features.add(feature);
-							success = true;
-						}
-
-						// only pan when their where really some items selected
-						if (success) {
-							map.getMapModel().zoomToFeatures(features);
-						}
-					}
-				});
-		
-	}
 }
