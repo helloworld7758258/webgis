@@ -101,9 +101,9 @@ public class Application implements EntryPoint {
 						map, htmlPane);
 				toolbar.addActionButton(action);
 
-				Label title = new Label("GWT GeoMajas GIS Editor");
+				Label title = new Label("Gebietsname");
 				title.setStyleName("appTitle");
-				title.setWidth(260);
+				title.setWidth("50%");
 				toolbar.addFill();
 				toolbar.addMember(title);
 			}
@@ -113,13 +113,15 @@ public class Application implements EntryPoint {
 		mapLayout.addMember(toolbar);
 		mapLayout.addMember(map);
 		mapLayout.setHeight("65%");
+		mapLayout.setWidth100();
 
-		VLayout leftLayout = new VLayout();
-		leftLayout.setBorder("2px solid #455469");
-		leftLayout.setStyleName("applicationLayoutCenter");
-		leftLayout.addMember(mapLayout);
+		VLayout centerLayout = new VLayout();
+		centerLayout.setBorder("2px solid #455469");
+		centerLayout.setStyleName("applicationLayoutCenter");
+		centerLayout.setWidth("30%");
+		centerLayout.addMember(mapLayout);
 
-		layout.addMember(leftLayout);
+		layout.addMember(centerLayout);
 
 		// ---------------------------------------------------------------------
 		// Create the right-side (overview map, layer-tree, legend):
@@ -130,7 +132,7 @@ public class Application implements EntryPoint {
 		sectionStack.setVisibilityMode(VisibilityMode.MULTIPLE);
 		sectionStack.setCanReorderSections(true);
 		sectionStack.setCanResizeSections(false);
-		sectionStack.setSize("250px", "100%");
+		sectionStack.setSize("20%", "100%");
 
 		// LayerTree layout:
 		SectionStackSection section1 = new SectionStackSection(

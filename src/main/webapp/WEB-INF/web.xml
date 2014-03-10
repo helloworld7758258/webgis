@@ -38,7 +38,7 @@
 			WEB-INF/planning/spring-hibernate.xml
 		</param-value>
 	</context-param>
-
+	
 	<filter>
 	    <filter-name>CacheFilter</filter-name>
 	    <filter-class>org.geomajas.servlet.CacheFilter</filter-class>
