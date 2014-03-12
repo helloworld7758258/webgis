@@ -77,7 +77,7 @@ public class Application implements EntryPoint {
 		// ---------------------------------------------------------------------
 		final HTMLPane htmlPane = new HTMLPane();
 		htmlPane.setShowEdges(true);
-		htmlPane.setContentsURL("http://localhost:8080/hnee/planungseditor");
+		htmlPane.setContentsURL("http://localhost:8080/hnee/planungseditor?geoobjects");
 		htmlPane.setContentsType(ContentsType.PAGE);
 		layout.addMember(htmlPane);  
 
@@ -118,7 +118,7 @@ public class Application implements EntryPoint {
 		VLayout centerLayout = new VLayout();
 		centerLayout.setBorder("2px solid #455469");
 		centerLayout.setStyleName("applicationLayoutCenter");
-		centerLayout.setWidth("30%");
+		centerLayout.setWidth("40%");
 		centerLayout.addMember(mapLayout);
 
 		layout.addMember(centerLayout);

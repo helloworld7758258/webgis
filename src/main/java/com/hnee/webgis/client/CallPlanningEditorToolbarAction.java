@@ -33,7 +33,7 @@ public class CallPlanningEditorToolbarAction extends ToolbarAction {
 
 	@Override
 	public void onClick(ClickEvent event) {
-		String url = "http://localhost:8889/planungseditor";
+		String url = "http://localhost:8080/hnee/planungseditor";
 		List<Feature> features = new ArrayList<Feature>();
 		String geoobjects = "";
 		for (VectorLayer layer : mapWidget.getMapModel().getVectorLayers()) {

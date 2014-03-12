@@ -83,6 +83,8 @@ http://www.springframework.org/schema/util http://www.springframework.org/schema
 		</property>
 		<property name="layers">
 			<list>
+				<ref bean="clientLayerOsm" />
+				<ref bean="clientLayerFfh" />
 				<ref bean="clientLayerPlanningAreas" />
 				<ref bean="clientLayerPlanningLines" />
 				<ref bean="clientLayerPlanningPoints" />
@@ -98,7 +100,6 @@ http://www.springframework.org/schema/util http://www.springframework.org/schema
 						<ref bean="ZoomPrevious" />
 						<ref bean="ZoomNext" />
 						<ref bean="ToolbarSeparator" />
-						<ref bean="EditMode" />
 						<ref bean="SelectionMode" />
 					</list>
 				</property>
@@ -115,9 +116,11 @@ http://www.springframework.org/schema/util http://www.springframework.org/schema
 				</property>
 				<property name="treeNode">
 					<bean class="org.geomajas.configuration.client.ClientLayerTreeNodeInfo">
-						<property name="label" value="Layers" />
+						<property name="label" value="Layer" />
 						<property name="layers">
 							<list>
+								<ref bean="clientLayerOsm" />
+								<ref bean="clientLayerFfh" />
 								<ref bean="clientLayerPlanningAreas" />
 								<ref bean="clientLayerPlanningLines" />
 								<ref bean="clientLayerPlanningPoints" />
