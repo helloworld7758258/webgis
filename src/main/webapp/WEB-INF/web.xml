@@ -35,7 +35,12 @@
 			WEB-INF/planning/layerPlanningAreas.xml
 			WEB-INF/planning/layerPlanningLines.xml
 			WEB-INF/planning/layerPlanningPoints.xml
-			WEB-INF/planning/spring-hibernate.xml
+			
+			<!--  Hibernate configuration -->
+			WEB-INF/spring-hibernate.xml
+			
+			<!-- widgets -->
+			WEB-INF/widget/layerTree.xml
 		</param-value>
 	</context-param>
 

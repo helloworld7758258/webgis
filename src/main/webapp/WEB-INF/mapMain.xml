@@ -105,32 +105,18 @@ http://www.springframework.org/schema/util http://www.springframework.org/schema
 				</property>
 			</bean>
 		</property>
-		<property name="layerTree">
-			<bean class="org.geomajas.configuration.client.ClientLayerTreeInfo">
-				<property name="tools">
-					<list>
-						<ref bean="LayerVisibleTool" />
-						<ref bean="LayerLabeledTool" />
-						<ref bean="LayerRefreshAction" />
-					</list>
-				</property>
-				<property name="treeNode">
-					<bean class="org.geomajas.configuration.client.ClientLayerTreeNodeInfo">
-						<property name="label" value="Layer" />
-						<property name="layers">
-							<list>
-								<ref bean="clientLayerOsm" />
-								<ref bean="clientLayerFfh" />
-								<ref bean="clientLayerPlanningAreas" />
-								<ref bean="clientLayerPlanningLines" />
-								<ref bean="clientLayerPlanningPoints" />
-							</list>
-						</property>
-						<property name="expanded" value="true" />
-					</bean>
-				</property>
-			</bean>
+		<property name="widgetInfo">
+			<map>
+				<entry>
+					<key>
+						<util:constant
+								static-field="org.geomajas.widget.layer.configuration.client.ClientLayerTreeInfo.IDENTIFIER" />
+					</key>
+					<ref bean="mainMapLayerTreeInfo"/>
+				</entry>
+			</map>
 		</property>
+
 	</bean>
 
 </beans>

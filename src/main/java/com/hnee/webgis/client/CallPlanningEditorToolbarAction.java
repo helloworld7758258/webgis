@@ -9,13 +9,8 @@ import org.geomajas.gwt.client.map.layer.VectorLayer;
 import org.geomajas.gwt.client.util.WidgetLayout;
 import org.geomajas.gwt.client.widget.MapWidget;
 
-import com.smartgwt.client.types.ContentsType;
 import com.smartgwt.client.widgets.HTMLPane;
-import com.smartgwt.client.widgets.Window;
 import com.smartgwt.client.widgets.events.ClickEvent;
-import com.smartgwt.client.widgets.events.CloseClickEvent;
-import com.smartgwt.client.widgets.events.CloseClickHandler;
-import com.smartgwt.client.widgets.layout.VLayout;
 
 public class CallPlanningEditorToolbarAction extends ToolbarAction {
 

@@ -11,22 +11,11 @@
 
 package com.hnee.webgis.client;
 
-import java.util.ArrayList;
-import java.util.List;
-
-import org.geomajas.configuration.client.ClientVectorLayerInfo;
-import org.geomajas.global.GeomajasConstant;
-import org.geomajas.gwt.client.map.MapView;
-import org.geomajas.gwt.client.map.feature.Feature;
-import org.geomajas.gwt.client.map.feature.LazyLoadCallback;
-import org.geomajas.gwt.client.map.layer.VectorLayer;
-import org.geomajas.gwt.client.map.store.VectorLayerStore;
-import org.geomajas.gwt.client.spatial.Bbox;
 import org.geomajas.gwt.client.util.WidgetLayout;
-import org.geomajas.gwt.client.widget.LayerTree;
 import org.geomajas.gwt.client.widget.Legend;
 import org.geomajas.gwt.client.widget.MapWidget;
 import org.geomajas.gwt.client.widget.Toolbar;
+import org.geomajas.widget.layer.client.widget.CombinedLayertree;
 
 import com.google.gwt.core.client.EntryPoint;
 import com.google.gwt.core.client.GWT;
@@ -138,7 +127,7 @@ public class Application implements EntryPoint {
 		SectionStackSection section1 = new SectionStackSection(
 				messages.layerTreeTitle());
 		section1.setExpanded(true);
-		LayerTree layerTree = new LayerTree(map);
+		CombinedLayertree layerTree = new CombinedLayertree(map);
 		section1.addItem(layerTree);
 		sectionStack.addSection(section1);
 

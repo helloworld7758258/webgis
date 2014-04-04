@@ -19,7 +19,8 @@ http://www.springframework.org/schema/tx http://www.springframework.org/schema/t
 	</bean>
 
 	<bean name="layerPlanningLinesInfo" class="org.geomajas.configuration.VectorLayerInfo">
-		<property name="layerType" value="MULTILINESTRING"/>
+		<property name="filter" value="geometryType IN ('MULTILINESTRING', 'LINESTRING')"/>
+		<property name="layerType" value="LINESTRING"/>
 		<property name="crs" value="EPSG:325833"/>
 		<property name="maxExtent">
 			<bean class="org.geomajas.geometry.Bbox">
@@ -73,7 +74,7 @@ http://www.springframework.org/schema/tx http://www.springframework.org/schema/t
 	</bean>
 
 	<bean class="org.geomajas.configuration.FeatureInfo" name="layerPlanningLinesFeatureInfo">
-		<property name="dataSourceName" value="com.hnee.webgis.server.Geoobject_pl" />
+		<property name="dataSourceName" value="com.hnee.webgis.server.Geoobjekt" />
 		<property name="identifier">
 			<bean class="org.geomajas.configuration.PrimitiveAttributeInfo">
 				<property name="label" value="id" />

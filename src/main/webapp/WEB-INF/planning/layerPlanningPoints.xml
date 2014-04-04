@@ -19,6 +19,7 @@ http://www.springframework.org/schema/tx http://www.springframework.org/schema/t
 	</bean>
 
 	<bean name="layerPlanningPointsInfo" class="org.geomajas.configuration.VectorLayerInfo">
+		<property name="filter" value="geometryType='POINT'"/>
 		<property name="layerType" value="POINT" />
 		<property name="crs" value="EPSG:325833" />
 		<property name="maxExtent">
@@ -82,7 +83,7 @@ http://www.springframework.org/schema/tx http://www.springframework.org/schema/t
 	</bean>
 
 	<bean class="org.geomajas.configuration.FeatureInfo" name="layerPlanningPointsFeatureInfo">
-		<property name="dataSourceName" value="com.hnee.webgis.server.Geoobject_pp" />
+		<property name="dataSourceName" value="com.hnee.webgis.server.Geoobjekt" />
 		<property name="identifier">
 			<bean class="org.geomajas.configuration.PrimitiveAttributeInfo">
 				<property name="label" value="id" />

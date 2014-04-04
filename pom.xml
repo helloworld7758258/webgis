@@ -17,12 +17,6 @@
 	<description>Geomajas GWT application</description>
 	<url>http://www.geomajas.org/</url>
 
-	<!-- @todo required for sample applications which are included in the Geomajas 
-		project, fix or delete <scm> <connection>scm:svn:https://svn.geomajas.org/majas/trunk/application/geomajas-dojo-example</connection> 
-		<developerConnection>scm:svn:https://svn.geomajas.org/majas/trunk/application/geomajas-dojo-example</developerConnection> 
-		<url>http://ci.geomajas.org/svn/repos/Geomajas/list/trunk/application/geomajas-dojo-example</url> 
-		</scm> -->
-
 	<licenses>
 		<license>
 			<name>GNU Affero General Public License, Version 3</name>
@@ -63,11 +57,12 @@
 
 			<dependency>
 				<groupId>org.geomajas.plugin</groupId>
-				<artifactId>geomajas-widget-advancedviews-all</artifactId>
-				<version>1.0.0-M3</version>
+				<artifactId>geomajas-widget-layer-all</artifactId>
+				<version>1.0.0-M5</version>
 				<type>pom</type>
 				<scope>import</scope>
 			</dependency>
+
 		</dependencies>
 	</dependencyManagement>
 	<dependencies>
@@ -88,13 +83,18 @@
 
 		<dependency>
 			<groupId>org.geomajas.widget</groupId>
-			<artifactId>geomajas-widget-advancedviews</artifactId>
+			<artifactId>geomajas-widget-layer-gwt</artifactId>
 		</dependency>
+		
 		<dependency>
-			<groupId>org.geomajas.widget</groupId>
-			<artifactId>geomajas-widget-advancedviews-gwt</artifactId>
+			<groupId>org.geomajas.plugin</groupId>
+			<artifactId>geomajas-layer-openstreetmap</artifactId>
 		</dependency>
-
+		
+		<dependency>
+			<groupId>org.geomajas.plugin</groupId>
+			<artifactId>geomajas-layer-geotools</artifactId>
+		</dependency>
 		<!-- Hibernate with h2/Geodb -->
 
 		<dependency>
@@ -117,9 +117,8 @@
 		</dependency>
 
 		<dependency>
-			<groupId>com.jolbox</groupId>
-			<artifactId>bonecp</artifactId>
-			<version>0.7.1-rc3</version>
+			<groupId>commons-dbcp</groupId>
+			<artifactId>commons-dbcp</artifactId>
 		</dependency>
 
 		<!-- Google dependencies -->
@@ -357,27 +356,6 @@
 			</properties>
 		</profile>
 	</profiles>
-
-	<repositories>
-		<repository>
-			<id>Geomajas</id>
-			<name>Geomajas repository</name>
-			<url>http://maven.geomajas.org/</url>
-		</repository>
-
-		<!-- uncomment if you want to use Geomajas snapshots, comment for faster 
-			builds -->
-		<!-- <repository> <id>Geomajas-latest</id> <name>Geomajas snapshot repository</name> 
-			<url>http://apps.geomajas.org/nexus/content/groups/latest</url> <snapshots> 
-			<enabled>true</enabled> </snapshots> </repository> -->
-	</repositories>
-	<pluginRepositories>
-		<pluginRepository>
-			<id>Geomajas</id>
-			<name>Geomajas repository</name>
-			<url>http://maven.geomajas.org/</url>
-		</pluginRepository>
-	</pluginRepositories>
 
 	<properties>
 		<geomajas-dep-version>1.13.38</geomajas-dep-version>

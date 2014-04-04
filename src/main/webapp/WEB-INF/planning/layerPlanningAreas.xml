@@ -19,6 +19,7 @@ http://www.springframework.org/schema/tx http://www.springframework.org/schema/t
 	</bean>
 
 	<bean name="layerPlanningAreasInfo" class="org.geomajas.configuration.VectorLayerInfo">
+		<property name="filter" value="geometryType IN ('MULTIPOLYGON', 'POLYGON')"/>
 		<property name="layerType" value="POLYGON"/>
 		<property name="crs" value="EPSG:325833"/>
 		<property name="maxExtent">
@@ -73,7 +74,7 @@ http://www.springframework.org/schema/tx http://www.springframework.org/schema/t
 	</bean>
 
 	<bean class="org.geomajas.configuration.FeatureInfo" name="layerPlanningAreasFeatureInfo">
-		<property name="dataSourceName" value="com.hnee.webgis.server.Geoobject_pa" />
+		<property name="dataSourceName" value="com.hnee.webgis.server.Geoobjekt" />
 		<property name="identifier">
 			<bean class="org.geomajas.configuration.PrimitiveAttributeInfo">
 				<property name="label" value="Id" />

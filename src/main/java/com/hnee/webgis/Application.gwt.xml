@@ -18,6 +18,9 @@
 	<!-- where value = "ie6/opera/gecko1_8/safari/gecko" , "gecko1_8" is FireFox 
 		3 -->
 	<!-- <set-property name="user.agent" value="gecko1_8" /> -->
+	
+	<!-- Plugins -->
+	<inherits name="org.geomajas.widget.layer.Layer" />
 
 	<entry-point class="com.hnee.webgis.client.Application" />
 </module>

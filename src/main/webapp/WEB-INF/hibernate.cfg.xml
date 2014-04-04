@@ -12,9 +12,8 @@
 		<property name="show_sql">true</property>
 		<property name="format_sql">true</property>
 		<property name="generate_statistics">true</property>
-		<mapping class="com.hnee.webgis.server.Geoobject_pa" />
-		<mapping class="com.hnee.webgis.server.Geoobject_pl" />
-		<mapping class="com.hnee.webgis.server.Geoobject_pp" />
-		
+		<mapping class="com.hnee.webgis.server.Geoobjekt" />
+		<mapping class="com.hnee.webgis.server.Linfos" />
+		<mapping class="com.hnee.webgis.server.MPlanung" />
 	</session-factory>
 </hibernate-configuration>
