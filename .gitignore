@@ -8,12 +8,13 @@
 *.iml
 *.iws
 
+# Netbeans
+nbactions.xml
+
 # Maven
 log/
 target/
 
-# Dirs
+# GWT
 .gwt/
 
-# Files
-nbactions.xml

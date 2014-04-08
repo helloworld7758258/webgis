@@ -1,4 +1,4 @@
-<?xml version="1.0" encoding="ISO-8859-1"?>
+<?xml version="1.0" encoding="utf-8"?>
 <StyledLayerDescriptor version="1.0.0"
                        xmlns="http://www.opengis.net/sld"
                        xmlns:ogc="http://www.opengis.net/ogc"
@@ -8,8 +8,8 @@
     <NamedLayer>
         <Name>PlanningAreas</Name>
         <UserStyle>
-            <Title>Planungsflächen</Title>
-            <Abstract>Planungsflächen</Abstract>
+            <Title>PlanungsflÃ¤chen</Title>
+            <Abstract>PlanungsflÃ¤chen</Abstract>
             <FeatureTypeStyle>
                 <Rule>
                     <Name>noplanning</Name>
@@ -61,7 +61,7 @@
                 </Rule>
                 <Rule>
                     <Name>measures</Name>
-                    <Title>Maßnahmen geplant</Title>
+                    <Title>MaÃŸnahmen geplant</Title>
                     <ogc:Filter>
                         <ogc:PropertyIsGreaterThan>
                             <ogc:PropertyName>measurecount</ogc:PropertyName>
