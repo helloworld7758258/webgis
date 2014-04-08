@@ -11,3 +11,9 @@
 # Maven
 log/
 target/
+
+# Dirs
+.gwt/
+
+# Files
+nbactions.xml
