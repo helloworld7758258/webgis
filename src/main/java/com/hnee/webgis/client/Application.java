@@ -11,12 +11,6 @@
 
 package com.hnee.webgis.client;
 
-import org.geomajas.gwt.client.util.WidgetLayout;
-import org.geomajas.gwt.client.widget.Legend;
-import org.geomajas.gwt.client.widget.MapWidget;
-import org.geomajas.gwt.client.widget.Toolbar;
-import org.geomajas.widget.layer.client.widget.CombinedLayertree;
-
 import com.google.gwt.core.client.EntryPoint;
 import com.google.gwt.core.client.GWT;
 import com.hnee.webgis.client.i18n.ApplicationMessages;
@@ -28,6 +22,12 @@ import com.smartgwt.client.widgets.layout.HLayout;
 import com.smartgwt.client.widgets.layout.SectionStack;
 import com.smartgwt.client.widgets.layout.SectionStackSection;
 import com.smartgwt.client.widgets.layout.VLayout;
+import org.geomajas.gwt.client.util.WidgetLayout;
+import org.geomajas.gwt.client.widget.FeatureListGrid;
+import org.geomajas.gwt.client.widget.Legend;
+import org.geomajas.gwt.client.widget.MapWidget;
+import org.geomajas.gwt.client.widget.Toolbar;
+import org.geomajas.widget.layer.client.widget.CombinedLayertree;
 
 /**
  * Entry point and main class for GWT application. This class defines the layout
@@ -60,7 +60,7 @@ public class Application implements EntryPoint {
 		layout.setHeight100();
 		layout.setMembersMargin(5);
 		layout.setMargin(5);
-		
+
 		// ---------------------------------------------------------------------
 		// Create the left-side (data editor):
 		// ---------------------------------------------------------------------
@@ -68,13 +68,25 @@ public class Application implements EntryPoint {
 		htmlPane.setShowEdges(true);
 		htmlPane.setContentsURL("http://localhost:8080/hnee/planungseditor?geoobjects");
 		htmlPane.setContentsType(ContentsType.PAGE);
-		layout.addMember(htmlPane);  
+		layout.addMember(htmlPane);
 
-		// ---------------------------------------------------------------------
+        VLayout centerLayout = new VLayout();
+        centerLayout.setBorder("2px solid #455469");
+        centerLayout.setWidth("40%");
+
+        // ---------------------------------------------------------------------
 		// Create the map layout (map and tabs):
 		// ---------------------------------------------------------------------
-		final MapWidget map = new MapWidget("mapMain", "app");
+        VLayout mapLayout = new VLayout();
+        mapLayout.setShowEdges(true);
+        mapLayout.setShowResizeBar(true);
+
+        final MapWidget map = new MapWidget("mapMain", "app");
 		final Toolbar toolbar = new Toolbar(map);
+
+        // Create a layout with a FeatureListGrid in it:
+        final FeatureListGrid grid = new FeatureListGrid(map.getMapModel());
+        grid.setShowEdges(true);
 
 		toolbar.setButtonSize(WidgetLayout.toolbarSmallButtonSize);
 		toolbar.setBackgroundColor("#647386");
@@ -95,20 +107,17 @@ public class Application implements EntryPoint {
 				title.setWidth("50%");
 				toolbar.addFill();
 				toolbar.addMember(title);
+
 			}
 		});
 
-		VLayout mapLayout = new VLayout();
 		mapLayout.addMember(toolbar);
 		mapLayout.addMember(map);
 		mapLayout.setHeight("65%");
 		mapLayout.setWidth100();
 
-		VLayout centerLayout = new VLayout();
-		centerLayout.setBorder("2px solid #455469");
-		centerLayout.setStyleName("applicationLayoutCenter");
-		centerLayout.setWidth("40%");
 		centerLayout.addMember(mapLayout);
+        centerLayout.addMember(grid);
 
 		layout.addMember(centerLayout);
 
@@ -117,28 +126,19 @@ public class Application implements EntryPoint {
 		// ---------------------------------------------------------------------
 		final SectionStack sectionStack = new SectionStack();
 		sectionStack.setBorder("2px solid #455469");
-		sectionStack.setStyleName("applicationLayoutCenter");
 		sectionStack.setVisibilityMode(VisibilityMode.MULTIPLE);
 		sectionStack.setCanReorderSections(true);
-		sectionStack.setCanResizeSections(false);
+        sectionStack.setCanResizeSections(true);
 		sectionStack.setSize("20%", "100%");
 
 		// LayerTree layout:
 		SectionStackSection section1 = new SectionStackSection(
 				messages.layerTreeTitle());
 		section1.setExpanded(true);
+        section1.setCanCollapse(true);
 		CombinedLayertree layerTree = new CombinedLayertree(map);
 		section1.addItem(layerTree);
 		sectionStack.addSection(section1);
-
-		// Legend layout:
-		SectionStackSection section2 = new SectionStackSection(
-				messages.legendTitle());
-		section2.setExpanded(true);
-		legend = new Legend(map.getMapModel());
-		legend.setBackgroundColor("#FFFFFF");
-		section2.addItem(legend);
-		sectionStack.addSection(section2);
 
 		// Putting the right side layouts together:
 		layout.addMember(sectionStack);
@@ -157,11 +157,11 @@ public class Application implements EntryPoint {
 		// loadScreen.draw();
 
 		// Then initialize:
-		initialize();
+		// initialize();
 	}
 
-	private void initialize() {
-		legend.setHeight(200);
-	}
+//	private void initialize() {
+//
+//	}
 	
 }

@@ -1,104 +1,160 @@
 <beans xmlns="http://www.springframework.org/schema/beans"
-	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:util="http://www.springframework.org/schema/util"
-	xmlns:aop="http://www.springframework.org/schema/aop" xmlns:tx="http://www.springframework.org/schema/tx"
+       xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:util="http://www.springframework.org/schema/util"
+       xmlns:aop="http://www.springframework.org/schema/aop" xmlns:tx="http://www.springframework.org/schema/tx"
 
-	xsi:schemaLocation="
+       xsi:schemaLocation="
 http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans-3.0.xsd
 http://www.springframework.org/schema/util http://www.springframework.org/schema/util/spring-util-2.0.xsd
 http://www.springframework.org/schema/aop http://www.springframework.org/schema/aop/spring-aop-3.0.xsd
 http://www.springframework.org/schema/tx http://www.springframework.org/schema/tx/spring-tx-3.0.xsd">
 
-	<bean name="layerPlanningAreas" class="org.geomajas.layer.hibernate.HibernateLayer">
-		<property name="layerInfo" ref="layerPlanningAreasInfo"/>
-		<property name="featureModel">
-			<bean class="org.geomajas.layer.hibernate.HibernateFeatureModel">
-				<property name="sessionFactory" ref="geodbSessionFactory" />
-			</bean>
-		</property>
-		<property name="sessionFactory" ref="geodbSessionFactory" />
-	</bean>
+    <bean name="layerPlanningAreas" class="org.geomajas.layer.hibernate.HibernateLayer">
+        <property name="layerInfo" ref="layerPlanningAreasInfo"/>
+        <property name="featureModel">
+            <bean class="org.geomajas.layer.hibernate.HibernateFeatureModel">
+                <property name="sessionFactory" ref="geodbSessionFactory"/>
+            </bean>
+        </property>
+        <property name="sessionFactory" ref="geodbSessionFactory"/>
+    </bean>
 
-	<bean name="layerPlanningAreasInfo" class="org.geomajas.configuration.VectorLayerInfo">
-		<property name="filter" value="geometryType IN ('MULTIPOLYGON', 'POLYGON')"/>
-		<property name="layerType" value="POLYGON"/>
-		<property name="crs" value="EPSG:325833"/>
-		<property name="maxExtent">
-			<bean class="org.geomajas.geometry.Bbox">
+    <bean name="layerPlanningAreasInfo" class="org.geomajas.configuration.VectorLayerInfo">
+        <property name="filter" value="geometryType IN ('MULTIPOLYGON', 'POLYGON')"/>
+        <property name="layerType" value="POLYGON"/>
+        <property name="crs" value="EPSG:325833"/>
+        <property name="maxExtent">
+            <bean class="org.geomajas.geometry.Bbox">
                 <property name="x" value="3348265"/>
                 <property name="y" value="5876529"/>
                 <property name="width" value="2000"/>
                 <property name="height" value="3000"/>
-			</bean>
-		</property>
-		<property name="featureInfo" ref="layerPlanningAreasFeatureInfo" />
-		<property name="namedStyleInfos">
-			<list>
-				<ref bean="layerPlanningAreasStyleInfo" />
-			</list>
-		</property>
-	</bean>
+            </bean>
+        </property>
+        <property name="featureInfo" ref="layerPlanningAreasFeatureInfo"/>
+        <property name="namedStyleInfos">
+            <list>
+                <ref bean="layerPlanningAreasStyleInfo"/>
+            </list>
+        </property>
+    </bean>
 
-	<bean class="org.geomajas.configuration.NamedStyleInfo" name="layerPlanningAreasStyleInfo">
-		<property name="featureStyles">
-			<list>
-				<bean class="org.geomajas.configuration.FeatureStyleInfo">
-					<property name="name" value="Planungsflächen" />
-					<property name="fillColor" value="#FFFFFF" />
-					<property name="fillOpacity" value="0" />
-					<property name="strokeColor" value="#000000" />
-					<property name="strokeOpacity" value="1" />
-					<property name="strokeWidth" value="1" />
-				</bean>
-			</list>
-		</property>
-		<property name="labelStyle">
-			<bean class="org.geomajas.configuration.LabelStyleInfo">
-				<property name="labelAttributeName" value="name" />
-				<property name="fontStyle">
-					<bean class="org.geomajas.configuration.FontStyleInfo">
-						<property name="color" value="#FEFEFE" />
-						<property name="opacity" value="1" />
-					</bean>
-				</property>
-				<property name="backgroundStyle">
-					<bean class="org.geomajas.configuration.FeatureStyleInfo">
-						<property name="fillColor" value="#888888" />
-						<property name="fillOpacity" value=".8" />
-						<property name="strokeColor" value="#CC0000" />
-						<property name="strokeOpacity" value=".7" />
-						<property name="strokeWidth" value="1" />
-					</bean>
-				</property>
-			</bean>
-		</property>
-	</bean>
+    <bean class="org.geomajas.configuration.NamedStyleInfo" name="layerPlanningAreasStyleInfo">
+        <property name="sldLocation" value="WEB-INF/planning/layerPlanningAreas.sld"/>
+    </bean>
 
-	<bean class="org.geomajas.configuration.FeatureInfo" name="layerPlanningAreasFeatureInfo">
-		<property name="dataSourceName" value="com.hnee.webgis.server.Geoobjekt" />
-		<property name="identifier">
-			<bean class="org.geomajas.configuration.PrimitiveAttributeInfo">
-				<property name="label" value="Id" />
-				<property name="name" value="id" />
-				<property name="type" value="LONG" />
-			</bean>
-		</property>
-		<property name="geometryType">
-			<bean class="org.geomajas.configuration.GeometryAttributeInfo">
-				<property name="name" value="geometry" />
-				<property name="editable" value="true" />
-			</bean>
-		</property>
-		<property name="attributes">
-			<list>
-				<bean class="org.geomajas.configuration.PrimitiveAttributeInfo">
-					<property name="label" value="Name" />
-					<property name="name" value="name" />
-					<property name="type" value="STRING" />
-				</bean>
-			</list>
-		</property>
-	</bean>
+    <!--
+    <bean class="org.geomajas.configuration.NamedStyleInfo" name="layerPlanningAreasStyleInfo">
+        <property name="featureStyles">
+            <list>
+                <bean class="org.geomajas.configuration.FeatureStyleInfo">
+                    <property name="name" value="Planungsflächen"/>
+                    <property name="fillColor" value="#FFFFFF"/>
+                    <property name="fillOpacity" value="0"/>
+                    <property name="strokeColor" value="#000000"/>
+                    <property name="strokeOpacity" value="1"/>
+                    <property name="strokeWidth" value="1"/>
+                </bean>
+            </list>
+        </property>
+        <property name="labelStyle">
+            <bean class="org.geomajas.configuration.LabelStyleInfo">
+                <property name="labelAttributeName" value="name"/>
+                <property name="fontStyle">
+                    <bean class="org.geomajas.configuration.FontStyleInfo">
+                        <property name="color" value="#FEFEFE"/>
+                        <property name="opacity" value="1"/>
+                    </bean>
+                </property>
+                <property name="backgroundStyle">
+                    <bean class="org.geomajas.configuration.FeatureStyleInfo">
+                        <property name="fillColor" value="#888888"/>
+                        <property name="fillOpacity" value=".8"/>
+                        <property name="strokeColor" value="#CC0000"/>
+                        <property name="strokeOpacity" value=".7"/>
+                        <property name="strokeWidth" value="1"/>
+                    </bean>
+                </property>
+            </bean>
+        </property>
+    </bean>
+    -->
 
-	
-	
+    <bean class="org.geomajas.configuration.FeatureInfo" name="layerPlanningAreasFeatureInfo">
+        <property name="dataSourceName" value="com.hnee.webgis.server.Geoobjekt"/>
+        <property name="identifier">
+            <bean class="org.geomajas.configuration.PrimitiveAttributeInfo">
+                <property name="label" value="Id"/>
+                <property name="name" value="id"/>
+                <property name="type" value="LONG"/>
+            </bean>
+        </property>
+        <property name="geometryType">
+            <bean class="org.geomajas.configuration.GeometryAttributeInfo">
+                <property name="name" value="geometry"/>
+                <property name="editable" value="true"/>
+            </bean>
+        </property>
+        <property name="attributes">
+            <list>
+                <bean class="org.geomajas.configuration.PrimitiveAttributeInfo">
+                    <property name="label" value="Name"/>
+                    <property name="name" value="name"/>
+                    <property name="type" value="STRING"/>
+                </bean>
+
+                <bean class="org.geomajas.configuration.AssociationAttributeInfo">
+                    <property name="label" value="Linfos"/>
+                    <property name="name" value="linfos"/>
+                    <property name="identifying" value="false" />
+                    <property name="type" value="ONE_TO_MANY"/>
+                    <property name="feature">
+                        <bean class="org.geomajas.configuration.FeatureInfo">
+                            <property name="dataSourceName" value="com.hnee.webgis.server.Linfos"/>
+                            <property name="identifier">
+                                <bean class="org.geomajas.configuration.PrimitiveAttributeInfo">
+                                    <property name="label" value="Id"/>
+                                    <property name="name" value="gispadid"/>
+                                    <property name="type" value="INTEGER"/>
+                                </bean>
+                            </property>
+                            <property name="attributes">
+                                <list>
+                                    <bean class="org.geomajas.configuration.AssociationAttributeInfo">
+                                        <property name="label" value="MPlanung"/>
+                                        <property name="name" value="mplanung"/>
+                                        <property name="type" value="ONE_TO_MANY"/>
+                                        <property name="feature">
+                                            <bean class="org.geomajas.configuration.FeatureInfo">
+                                                <property name="dataSourceName"
+                                                          value="com.hnee.webgis.server.MPlanung"/>
+                                                <property name="identifier">
+                                                    <bean class="org.geomajas.configuration.PrimitiveAttributeInfo">
+                                                        <property name="label" value="Id"/>
+                                                        <property name="name" value="pkey"/>
+                                                        <property name="type" value="LONG"/>
+                                                    </bean>
+                                                </property>
+                                                <property name="attributes">
+                                                    <list>
+                                                        <bean class="org.geomajas.configuration.PrimitiveAttributeInfo">
+                                                            <property name="label" value="Measures"/>
+                                                            <property name="name" value="measurecount"/>
+                                                            <property name="identifying" value="true"/>
+                                                            <property name="type" value="LONG"/>
+                                                        </bean>
+                                                    </list>
+                                                </property>
+                                            </bean>
+                                        </property>
+                                    </bean>
+                                </list>
+                            </property>
+                        </bean>
+                    </property>
+                </bean>
+            </list>
+        </property>
+    </bean>
+
+
 </beans>

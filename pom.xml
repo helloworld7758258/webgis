@@ -176,9 +176,9 @@
 
 			<!-- Run the application using "mvn jetty:run" -->
 			<plugin>
-				<groupId>org.eclipse.jetty</groupId>
-				<artifactId>maven-jetty-plugin</artifactId>
-				<version>7.2.0</version>
+                <groupId>org.mortbay.jetty</groupId>
+                <artifactId>jetty-maven-plugin</artifactId>
+                <version>8.1.14.v20131031</version>
 				<configuration>
 					<webAppConfig>
 						<contextPath>/webgis</contextPath>
@@ -189,29 +189,6 @@
 						<jettyXml>src/main/resources/jetty-env.xml</jettyXml>
 					</webAppConfig>
 					<reload>manual</reload>
-				</configuration>
-			</plugin>
-
-			<!-- Run the application using cargo:deploy -->
-			<plugin>
-				<groupId>org.codehaus.cargo</groupId>
-				<artifactId>cargo-maven2-plugin</artifactId>
-				<version>1.4.7</version>
-				<configuration>
-					<container>
-						<containerId>tomcat7x</containerId>
-						<type>remote</type>
-					</container>
-					<configuration>
-						<type>runtime</type>
-						<properties>
-							<cargo.hostname>localhost</cargo.hostname>
-							<cargo.servlet.port>8080</cargo.servlet.port>
-						</properties>
-					</configuration>
-					<deployer>
-						<type>remote</type>
-					</deployer>
 				</configuration>
 			</plugin>
 
