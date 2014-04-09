@@ -106,7 +106,7 @@ http://www.springframework.org/schema/tx http://www.springframework.org/schema/t
                     <property name="label" value="Linfos"/>
                     <property name="name" value="linfos"/>
                     <property name="identifying" value="false" />
-                    <property name="type" value="ONE_TO_MANY"/>
+                    <property name="type" value="MANY_TO_ONE"/>
                     <property name="feature">
                         <bean class="org.geomajas.configuration.FeatureInfo">
                             <property name="dataSourceName" value="com.hnee.webgis.server.Linfos"/>
@@ -122,7 +122,7 @@ http://www.springframework.org/schema/tx http://www.springframework.org/schema/t
                                     <bean class="org.geomajas.configuration.AssociationAttributeInfo">
                                         <property name="label" value="MPlanung"/>
                                         <property name="name" value="mplanung"/>
-                                        <property name="type" value="ONE_TO_MANY"/>
+                                        <property name="type" value="MANY_TO_ONE"/>
                                         <property name="feature">
                                             <bean class="org.geomajas.configuration.FeatureInfo">
                                                 <property name="dataSourceName"
