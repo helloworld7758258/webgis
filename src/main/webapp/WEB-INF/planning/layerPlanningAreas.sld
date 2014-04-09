@@ -16,7 +16,7 @@
                     <Title>Keine Planung</Title>
                     <ogc:Filter>
                         <ogc:PropertyIsLessThan>
-                            <ogc:PropertyName>measurecount</ogc:PropertyName>
+                            <ogc:PropertyName>linfos.mplanung.measurecount</ogc:PropertyName>
                             <ogc:Literal>0</ogc:Literal>
                         </ogc:PropertyIsLessThan>
                     </ogc:Filter>
@@ -40,7 +40,7 @@
                     <Title>Planung angelegt</Title>
                     <ogc:Filter>
                         <ogc:PropertyIsEqualTo>
-                            <ogc:PropertyName>measurecount</ogc:PropertyName>
+                            <ogc:PropertyName>linfos.mplanung.measurecount</ogc:PropertyName>
                             <ogc:Literal>0</ogc:Literal>
                         </ogc:PropertyIsEqualTo>
                     </ogc:Filter>
@@ -64,7 +64,7 @@
                     <Title>Maßnahmen geplant</Title>
                     <ogc:Filter>
                         <ogc:PropertyIsGreaterThan>
-                            <ogc:PropertyName>measurecount</ogc:PropertyName>
+                            <ogc:PropertyName>linfos.mplanung.measurecount</ogc:PropertyName>
                             <ogc:Literal>0</ogc:Literal>
                         </ogc:PropertyIsGreaterThan>
                     </ogc:Filter>
