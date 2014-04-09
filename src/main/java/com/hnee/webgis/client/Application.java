@@ -32,136 +32,128 @@ import org.geomajas.widget.layer.client.widget.CombinedLayertree;
 /**
  * Entry point and main class for GWT application. This class defines the layout
  * and functionality of this application.
- * 
- * @author geomajas-gwt-archetype
+ *
+ * @author Oliver Bienert
  */
 public class Application implements EntryPoint {
 
-	private Legend legend;
+    private Legend legend;
 
-	private ApplicationMessages messages = GWT
-			.create(ApplicationMessages.class);
+    private ApplicationMessages messages = GWT
+            .create(ApplicationMessages.class);
 
-	public Application() {
-	}
+    public Application() {
+    }
 
-	@Override
-	public void onModuleLoad() {
-		WidgetLayout.legendVectorRowHeight = 10;
-		WidgetLayout.legendRasterRowHeight = 10;
+    @Override
+    public void onModuleLoad() {
+        WidgetLayout.legendVectorRowHeight = 10;
+        WidgetLayout.legendRasterRowHeight = 10;
 
-		VLayout mainLayout = new VLayout();
-		mainLayout.setWidth100();
-		mainLayout.setHeight100();
-		mainLayout.setBackgroundColor("#A0A0A0");
+        final MapWidget map = new MapWidget("mapMain", "app");
+        final Toolbar toolbar = new Toolbar(map);
 
-		HLayout layout = new HLayout();
-		layout.setWidth100();
-		layout.setHeight100();
-		layout.setMembersMargin(5);
-		layout.setMargin(5);
+        HLayout mainLayout = new HLayout();
+        mainLayout.setWidth100();
+        mainLayout.setHeight100();
+        mainLayout.setMembersMargin(5);
+        mainLayout.setMargin(5);
 
-		// ---------------------------------------------------------------------
-		// Create the left-side (data editor):
-		// ---------------------------------------------------------------------
-		final HTMLPane htmlPane = new HTMLPane();
-		htmlPane.setShowEdges(true);
-		htmlPane.setContentsURL("http://localhost:8080/hnee/planungseditor?geoobjects");
-		htmlPane.setContentsType(ContentsType.PAGE);
-		layout.addMember(htmlPane);
+        // ---------------------------------------------------------------------
+        // Create the left-side (overview map, layer-tree, legend):
+        // ---------------------------------------------------------------------
+        final SectionStack sectionStack = new SectionStack();
+        sectionStack.setBorder("2px solid #455469");
+        sectionStack.setVisibilityMode(VisibilityMode.MULTIPLE);
+        sectionStack.setCanReorderSections(true);
+        sectionStack.setCanResizeSections(true);
+        sectionStack.setWidth(230);
+        sectionStack.setHeight("100%");
+
+        // LayerTree layout:
+        SectionStackSection section1 = new SectionStackSection(
+                messages.layerTreeTitle());
+        section1.setExpanded(true);
+        section1.setCanCollapse(true);
+        CombinedLayertree layerTree = new CombinedLayertree(map);
+        section1.addItem(layerTree);
+        sectionStack.addSection(section1);
+
+        // ---------------------------------------------------------------------
+        // Create the right-side (data editor):
+        // ---------------------------------------------------------------------
+        final HTMLPane htmlPane = new HTMLPane();
+        htmlPane.setShowEdges(true);
+        htmlPane.setContentsURL("http://localhost:8080/hnee/planungseditor?geoobjects");
+        htmlPane.setContentsType(ContentsType.PAGE);
 
         VLayout centerLayout = new VLayout();
         centerLayout.setBorder("2px solid #455469");
-        centerLayout.setWidth("40%");
+        centerLayout.setWidth("*");
+        centerLayout.setShowResizeBar(true);
 
         // ---------------------------------------------------------------------
-		// Create the map layout (map and tabs):
-		// ---------------------------------------------------------------------
+        // Create the map layout (map and tabs):
+        // ---------------------------------------------------------------------
         VLayout mapLayout = new VLayout();
-        mapLayout.setShowEdges(true);
         mapLayout.setShowResizeBar(true);
-
-        final MapWidget map = new MapWidget("mapMain", "app");
-		final Toolbar toolbar = new Toolbar(map);
 
         // Create a layout with a FeatureListGrid in it:
         final FeatureListGrid grid = new FeatureListGrid(map.getMapModel());
-        grid.setShowEdges(true);
 
-		toolbar.setButtonSize(WidgetLayout.toolbarSmallButtonSize);
-		toolbar.setBackgroundColor("#647386");
-		toolbar.setBackgroundImage("");
-		toolbar.setBorder("0px");
+        toolbar.setButtonSize(WidgetLayout.toolbarSmallButtonSize);
+        toolbar.setBackgroundColor("#647386");
+        toolbar.setBackgroundImage("");
+        toolbar.setBorder("0px");
 
-		map.getMapModel().runWhenInitialized(new Runnable() {
+        // Add a custom action button
+        CallPlanningEditorToolbarAction action = new CallPlanningEditorToolbarAction(
+                map, htmlPane);
+        toolbar.addActionButton(action);
+        toolbar.addFill();
 
-			@Override
-			public void run() {
-				// Add a custom action button
-				CallPlanningEditorToolbarAction action = new CallPlanningEditorToolbarAction(
-						map, htmlPane);
-				toolbar.addActionButton(action);
+        map.getMapModel().runWhenInitialized(new Runnable() {
 
-				Label title = new Label("Gebietsname");
-				title.setStyleName("appTitle");
-				title.setWidth("50%");
-				toolbar.addFill();
-				toolbar.addMember(title);
+            @Override
+            public void run() {
+                Label title = new Label("Gebietsname");
+                title.setStyleName("appTitle");
+                title.setWidth("50%");
+                toolbar.addMember(title);
 
-			}
-		});
+            }
+        });
 
-		mapLayout.addMember(toolbar);
-		mapLayout.addMember(map);
-		mapLayout.setHeight("65%");
-		mapLayout.setWidth100();
+        mapLayout.addMember(toolbar);
+        mapLayout.addMember(map);
+        mapLayout.setHeight("65%");
+        mapLayout.setWidth100();
 
-		centerLayout.addMember(mapLayout);
+        centerLayout.addMember(mapLayout);
         centerLayout.addMember(grid);
 
-		layout.addMember(centerLayout);
+        mainLayout.addMember(sectionStack);
+        mainLayout.addMember(centerLayout);
+        mainLayout.addMember(htmlPane);
 
-		// ---------------------------------------------------------------------
-		// Create the right-side (overview map, layer-tree, legend):
-		// ---------------------------------------------------------------------
-		final SectionStack sectionStack = new SectionStack();
-		sectionStack.setBorder("2px solid #455469");
-		sectionStack.setVisibilityMode(VisibilityMode.MULTIPLE);
-		sectionStack.setCanReorderSections(true);
-        sectionStack.setCanResizeSections(true);
-		sectionStack.setSize("20%", "100%");
+        // ---------------------------------------------------------------------
+        // Finally draw everything:
+        // ---------------------------------------------------------------------
+        mainLayout.draw();
 
-		// LayerTree layout:
-		SectionStackSection section1 = new SectionStackSection(
-				messages.layerTreeTitle());
-		section1.setExpanded(true);
-        section1.setCanCollapse(true);
-		CombinedLayertree layerTree = new CombinedLayertree(map);
-		section1.addItem(layerTree);
-		sectionStack.addSection(section1);
+        // Install a loading screen.
+        // This only works if the application initially shows a map with at
+        // least 1 vector layer:
+        // LoadingScreen loadScreen = new LoadingScreen(map,
+        // "Geomajas GWT application");
+        // loadScreen.draw();
 
-		// Putting the right side layouts together:
-		layout.addMember(sectionStack);
-
-		// ---------------------------------------------------------------------
-		// Finally draw everything:
-		// ---------------------------------------------------------------------
-		mainLayout.addMember(layout);
-		mainLayout.draw();
-
-		// Install a loading screen.
-		// This only works if the application initially shows a map with at
-		// least 1 vector layer:
-		// LoadingScreen loadScreen = new LoadingScreen(map,
-		// "Geomajas GWT application");
-		// loadScreen.draw();
-
-		// Then initialize:
-		// initialize();
-	}
+        // Then initialize:
+        // initialize();
+    }
 
 //	private void initialize() {
 //
 //	}
-	
+
 }

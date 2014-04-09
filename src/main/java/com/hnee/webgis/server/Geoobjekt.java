@@ -38,7 +38,7 @@ public class Geoobjekt {
 	@Type(type = "org.hibernatespatial.GeometryUserType")
 	@Column(name = "GEOM")
 	private Geometry geometry;
-	
+
 	@OneToOne(mappedBy="geoobjekt", cascade=CascadeType.ALL)
 	private Linfos linfos;
 	
