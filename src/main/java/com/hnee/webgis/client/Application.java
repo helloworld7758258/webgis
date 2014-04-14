@@ -13,6 +13,7 @@ package com.hnee.webgis.client;
 
 import com.google.gwt.core.client.EntryPoint;
 import com.google.gwt.core.client.GWT;
+import com.hnee.webgis.client.gui.SearchPanel;
 import com.hnee.webgis.client.i18n.ApplicationMessages;
 import com.smartgwt.client.types.ContentsType;
 import com.smartgwt.client.types.VisibilityMode;
@@ -23,7 +24,6 @@ import com.smartgwt.client.widgets.layout.SectionStack;
 import com.smartgwt.client.widgets.layout.SectionStackSection;
 import com.smartgwt.client.widgets.layout.VLayout;
 import org.geomajas.gwt.client.util.WidgetLayout;
-import org.geomajas.gwt.client.widget.FeatureListGrid;
 import org.geomajas.gwt.client.widget.Legend;
 import org.geomajas.gwt.client.widget.MapWidget;
 import org.geomajas.gwt.client.widget.Toolbar;
@@ -98,19 +98,14 @@ public class Application implements EntryPoint {
         VLayout mapLayout = new VLayout();
         mapLayout.setShowResizeBar(true);
 
-        // Create a layout with a FeatureListGrid in it:
-        final FeatureListGrid grid = new FeatureListGrid(map.getMapModel());
-
         toolbar.setButtonSize(WidgetLayout.toolbarSmallButtonSize);
         toolbar.setBackgroundColor("#647386");
         toolbar.setBackgroundImage("");
         toolbar.setBorder("0px");
 
         // Add a custom action button
-        CallPlanningEditorToolbarAction action = new CallPlanningEditorToolbarAction(
+        final CallPlanningEditorToolbarAction action = new CallPlanningEditorToolbarAction(
                 map, htmlPane);
-        toolbar.addActionButton(action);
-        toolbar.addFill();
 
         map.getMapModel().runWhenInitialized(new Runnable() {
 
@@ -119,6 +114,9 @@ public class Application implements EntryPoint {
                 Label title = new Label("Gebietsname");
                 title.setStyleName("appTitle");
                 title.setWidth("50%");
+                toolbar.addActionButton(action);
+                toolbar.addFill();
+
                 toolbar.addMember(title);
 
             }
@@ -130,11 +128,14 @@ public class Application implements EntryPoint {
         mapLayout.setWidth100();
 
         centerLayout.addMember(mapLayout);
-        centerLayout.addMember(grid);
 
         mainLayout.addMember(sectionStack);
         mainLayout.addMember(centerLayout);
         mainLayout.addMember(htmlPane);
+
+		// Add a search panel to the top-right of the map:
+		SearchPanel searchPanel = new SearchPanel(map.getMapModel(), mapLayout);
+		mapLayout.addChild(searchPanel);
 
         // ---------------------------------------------------------------------
         // Finally draw everything:

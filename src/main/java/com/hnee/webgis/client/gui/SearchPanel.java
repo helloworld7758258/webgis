@@ -289,7 +289,7 @@ public class SearchPanel extends VLayout {
 
 		// Create the FeatureListGrid - a table for displaying attributes:
 		featureListGrid = new FeatureListGrid(mapModel);
-		featureListGrid.setEditingEnabled(true);
+		featureListGrid.setEditingEnabled(false);
 		layout.addMember(featureListGrid);
 		return layout;
 	}

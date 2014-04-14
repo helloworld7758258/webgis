@@ -30,4 +30,5 @@ public interface ApplicationMessages extends Messages {
 	
 	String legendTitle();
 
+    String searchTitle();
 }

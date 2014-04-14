@@ -14,18 +14,17 @@
                     <Name>noplanning</Name>
                     <Title>Keine Planung</Title>
                     <ogc:Filter>
-                        <ogc:PropertyIsLessThan>
+                        <ogc:PropertyIsNull>
                             <ogc:PropertyName>linfos.mplanung.measurecount</ogc:PropertyName>
-                            <ogc:Literal>0</ogc:Literal>
-                        </ogc:PropertyIsLessThan>
+                         </ogc:PropertyIsNull>
                     </ogc:Filter>
                     <PolygonSymbolizer>
                         <Fill>
                             <CssParameter name="fill">
-                                <ogc:Literal>#C2F7C7</ogc:Literal>
+                                #009933
                             </CssParameter>
                             <CssParameter name="fill-opacity">
-                                <ogc:Literal>0.5</ogc:Literal>
+                                0.5
                             </CssParameter>
                         </Fill>
                         <Stroke>
@@ -46,10 +45,10 @@
                     <PolygonSymbolizer>
                         <Fill>
                             <CssParameter name="fill">
-                                <ogc:Literal>#7AC2A3</ogc:Literal>
+                                #0055CC
                             </CssParameter>
                             <CssParameter name="fill-opacity">
-                                <ogc:Literal>0.5</ogc:Literal>
+                                0.5
                             </CssParameter>
                         </Fill>
                         <Stroke>
@@ -70,10 +69,10 @@
                     <PolygonSymbolizer>
                         <Fill>
                             <CssParameter name="fill">
-                                <ogc:Literal>#3D9485</ogc:Literal>
+                                #FF0000
                             </CssParameter>
                             <CssParameter name="fill-opacity">
-                                <ogc:Literal>0.5</ogc:Literal>
+                                0.5
                             </CssParameter>
                         </Fill>
                         <Stroke>
