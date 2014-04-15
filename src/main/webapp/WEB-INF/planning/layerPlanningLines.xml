@@ -42,45 +42,8 @@ http://www.springframework.org/schema/tx http://www.springframework.org/schema/t
         <property name="sldLocation" value="WEB-INF/planning/layerPlanningLines.sld"/>
     </bean>
 
-    <!--
-    <bean class="org.geomajas.configuration.NamedStyleInfo" name="layerPlanningLinesStyleInfo">
-		<property name="featureStyles">
-			<list>
-				<bean class="org.geomajas.configuration.FeatureStyleInfo">
-					<property name="name" value="Planungslinien" />
-					<property name="fillColor" value="#FFFFFF" />
-					<property name="fillOpacity" value="0" />
-					<property name="strokeColor" value="#941515" />
-					<property name="strokeOpacity" value="1" />
-					<property name="strokeWidth" value="1" />
-				</bean>
-			</list>
-		</property>
-		<property name="labelStyle">
-			<bean class="org.geomajas.configuration.LabelStyleInfo">
-				<property name="labelAttributeName" value="name" />
-				<property name="fontStyle">
-					<bean class="org.geomajas.configuration.FontStyleInfo">
-						<property name="color" value="#FEFEFE" />
-						<property name="opacity" value="1" />
-					</bean>
-				</property>
-				<property name="backgroundStyle">
-					<bean class="org.geomajas.configuration.FeatureStyleInfo">
-						<property name="fillColor" value="#888888" />
-						<property name="fillOpacity" value=".8" />
-						<property name="strokeColor" value="#CC0000" />
-						<property name="strokeOpacity" value=".7" />
-						<property name="strokeWidth" value="1" />
-					</bean>
-				</property>
-			</bean>
-		</property>
-	</bean>
-    -->
-
 	<bean class="org.geomajas.configuration.FeatureInfo" name="layerPlanningLinesFeatureInfo">
-		<property name="dataSourceName" value="com.hnee.webgis.server.Geoobjekt" />
+		<property name="dataSourceName" value="com.hnee.webgis.server.MPlanung" />
 		<property name="identifier">
 			<bean class="org.geomajas.configuration.PrimitiveAttributeInfo">
 				<property name="label" value="id" />
@@ -94,65 +57,8 @@ http://www.springframework.org/schema/tx http://www.springframework.org/schema/t
 				<property name="editable" value="true" />
 			</bean>
 		</property>
-        <property  name="attributes">
-            <list>
-                <bean class="org.geomajas.configuration.PrimitiveAttributeInfo">
-                    <property name="label" value="Name"/>
-                    <property name="name" value="name"/>
-                    <property name="type" value="STRING"/>
-                </bean>
-
-                <bean class="org.geomajas.configuration.AssociationAttributeInfo">
-                    <property name="label" value="Linfos"/>
-                    <property name="name" value="linfos"/>
-                    <property name="identifying" value="false" />
-                    <property name="type" value="MANY_TO_ONE"/>
-                    <property name="feature">
-                        <bean class="org.geomajas.configuration.FeatureInfo">
-                            <property name="dataSourceName" value="com.hnee.webgis.server.Linfos"/>
-                            <property name="identifier">
-                                <bean class="org.geomajas.configuration.PrimitiveAttributeInfo">
-                                    <property name="label" value="Id"/>
-                                    <property name="name" value="gispadid"/>
-                                    <property name="type" value="INTEGER"/>
-                                </bean>
-                            </property>
-                            <property name="attributes">
-                                <list>
-                                    <bean class="org.geomajas.configuration.AssociationAttributeInfo">
-                                        <property name="label" value="MPlanung"/>
-                                        <property name="name" value="mplanung"/>
-                                        <property name="type" value="MANY_TO_ONE"/>
-                                        <property name="feature">
-                                            <bean class="org.geomajas.configuration.FeatureInfo">
-                                                <property name="dataSourceName"
-                                                          value="com.hnee.webgis.server.MPlanung"/>
-                                                <property name="identifier">
-                                                    <bean class="org.geomajas.configuration.PrimitiveAttributeInfo">
-                                                        <property name="label" value="Id"/>
-                                                        <property name="name" value="pkey"/>
-                                                        <property name="type" value="LONG"/>
-                                                    </bean>
-                                                </property>
-                                                <property name="attributes">
-                                                    <list>
-                                                        <bean class="org.geomajas.configuration.PrimitiveAttributeInfo">
-                                                            <property name="label" value="Measures"/>
-                                                            <property name="name" value="measurecount"/>
-                                                            <property name="identifying" value="true"/>
-                                                            <property name="type" value="LONG"/>
-                                                        </bean>
-                                                    </list>
-                                                </property>
-                                            </bean>
-                                        </property>
-                                    </bean>
-                                </list>
-                            </property>
-                        </bean>
-                    </property>
-                </bean>
-            </list>
+        <property name="attributes">
+            <util:property-path path="layerPlanningAreasFeatureInfo.attributes"/>
         </property>
 	</bean>
 

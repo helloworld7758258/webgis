@@ -1,67 +1,100 @@
 package com.hnee.webgis.server;
 
+import com.vividsolutions.jts.geom.Geometry;
+import org.hibernate.annotations.Type;
+
+import javax.persistence.*;
+
 import static javax.persistence.GenerationType.IDENTITY;
 
-import javax.persistence.Column;
-import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.Id;
-import javax.persistence.JoinColumn;
-import javax.persistence.OneToOne;
-import javax.persistence.PrimaryKeyJoinColumn;
-import javax.persistence.SecondaryTable;
-import javax.persistence.Table;
-import javax.persistence.UniqueConstraint;
-
 @Entity
-@Table(name = "M_PLANUNG", uniqueConstraints = @UniqueConstraint(columnNames = "FKEY"))
-@SecondaryTable(name = "MEASURES_COUNT", pkJoinColumns = { @PrimaryKeyJoinColumn(name = "FKEY", referencedColumnName = "PKEY") })
+@Table(name = "M_PLANUNG")
+@SecondaryTables({
+        @SecondaryTable(name = "MEASURES_COUNT", pkJoinColumns = {
+                @PrimaryKeyJoinColumn(name = "FKEY", referencedColumnName = "PKEY")}),
+        @SecondaryTable(name = "GEOMETRY_TYPE", pkJoinColumns = {
+                @PrimaryKeyJoinColumn(name = "ID", referencedColumnName = "PKEY") })
+})
 public class MPlanung {
 
-	// Fields
+    // Fields
 
-	@Id
-	@GeneratedValue(strategy = IDENTITY)
-	@Column(name = "PKEY", unique = true, nullable = false)
-	private Long pkey;
+    @Id
+    @GeneratedValue(strategy = IDENTITY)
+    @Column(name = "PKEY", unique = true, nullable = false)
+    private Long id;
 
-	@OneToOne
-	@JoinColumn(name="FKEY")
-	private Linfos linfos;
-	
-	@Column(table = "MEASURES_COUNT", name = "CNT")
-	private Long measurecount;
-	
-	// Constructors
+    @Column(name = "PK_PIDENT")
+    private String name;
 
-	/** default constructor */
-	public MPlanung() {
-	}
+    @Column(name="FK_ZIEL_P")
+    private String ziel_p;
 
-	// Property accessors
-	
-	public Long getPkey() {
-		return this.pkey;
-	}
+    @Type(type = "org.hibernatespatial.GeometryUserType")
+    @Column(name = "GEOM")
+    private Geometry geometry;
 
-	public void setPkey(Long pkey) {
-		this.pkey = pkey;
-	}
+    @Column(table = "MEASURES_COUNT", name = "CNT")
+    private Long measurecount;
 
-	public Linfos getLinfos() {
-		return linfos;
-	}
+    @Column(table = "GEOMETRY_TYPE", name = "GEOMETRYTYPE")
+    private String geometryType;
 
-	public void setLinfos(Linfos linfos) {
-		this.linfos = linfos;
-	}
+    // Constructors
 
-	public Long getMeasurecount() {
-		return measurecount;
-	}
+    /**
+     * default constructor
+     */
+    public MPlanung() {
+    }
 
-	public void setMeasurecount(Long measurecount) {
-		this.measurecount = measurecount;
-	}
+    // Property accessors
 
+    public Long getId() {
+        return this.id;
+    }
+
+    public void setId(Long id) {
+        this.id = id;
+    }
+
+    public Long getMeasurecount() {
+        return measurecount;
+    }
+
+    public void setMeasurecount(Long measurecount) {
+        this.measurecount = measurecount;
+    }
+
+    public String getName() {
+        return name;
+    }
+
+    public void setName(String name) {
+        this.name = name;
+    }
+
+    public String getZiel_p() {
+        return ziel_p;
+    }
+
+    public void setZiel_p(String ziel_p) {
+        this.ziel_p = ziel_p;
+    }
+
+    public Geometry getGeometry() {
+        return geometry;
+    }
+
+    public void setGeometry(Geometry geometry) {
+        this.geometry = geometry;
+    }
+
+    public String getGeometryType() {
+        return geometryType;
+    }
+
+    public void setGeometryType(String geometryType) {
+        this.geometryType = geometryType;
+    }
 }

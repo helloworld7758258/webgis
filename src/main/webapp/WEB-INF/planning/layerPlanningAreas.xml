@@ -43,7 +43,7 @@ http://www.springframework.org/schema/tx http://www.springframework.org/schema/t
     </bean>
 
     <bean class="org.geomajas.configuration.FeatureInfo" name="layerPlanningAreasFeatureInfo">
-        <property name="dataSourceName" value="com.hnee.webgis.server.Geoobjekt"/>
+        <property name="dataSourceName" value="com.hnee.webgis.server.MPlanung"/>
         <property name="identifier">
             <bean class="org.geomajas.configuration.PrimitiveAttributeInfo">
                 <property name="label" value="Id"/>
@@ -58,67 +58,27 @@ http://www.springframework.org/schema/tx http://www.springframework.org/schema/t
             </bean>
         </property>
 
-        <property  name="attributes">
+        <property name="attributes">
             <list>
                 <bean class="org.geomajas.configuration.PrimitiveAttributeInfo">
                     <property name="label" value="Name"/>
                     <property name="name" value="name"/>
+                    <property name="identifying" value="true"/>
                     <property name="type" value="STRING"/>
                 </bean>
-
-                <bean class="org.geomajas.configuration.AssociationAttributeInfo">
-                    <property name="label" value="Linfos"/>
-                    <property name="name" value="linfos"/>
-                    <property name="identifying" value="true" />
-                    <property name="hidden" value="true"/>
-                    <property name="type" value="MANY_TO_ONE"/>
-                    <property name="feature">
-                        <bean class="org.geomajas.configuration.FeatureInfo">
-                            <property name="dataSourceName" value="com.hnee.webgis.server.Linfos"/>
-                            <property name="identifier">
-                                <bean class="org.geomajas.configuration.PrimitiveAttributeInfo">
-                                    <property name="label" value="Id"/>
-                                    <property name="name" value="gispadid"/>
-                                    <property name="type" value="INTEGER"/>
-                                </bean>
-                            </property>
-                            <property name="attributes">
-                                <list>
-                                    <bean class="org.geomajas.configuration.AssociationAttributeInfo">
-                                        <property name="label" value="MPlanung"/>
-                                        <property name="name" value="mplanung"/>
-                                        <property name="identifying" value="true"/>
-                                        <property name="hidden" value="true"/>
-                                        <property name="type" value="MANY_TO_ONE"/>
-                                        <property name="feature">
-                                            <bean class="org.geomajas.configuration.FeatureInfo">
-                                                <property name="dataSourceName"
-                                                          value="com.hnee.webgis.server.MPlanung"/>
-                                                <property name="identifier">
-                                                    <bean class="org.geomajas.configuration.PrimitiveAttributeInfo">
-                                                        <property name="label" value="Id"/>
-                                                        <property name="name" value="pkey"/>
-                                                        <property name="type" value="LONG"/>
-                                                    </bean>
-                                                </property>
-                                                <property name="attributes">
-                                                    <list>
-                                                        <bean class="org.geomajas.configuration.PrimitiveAttributeInfo">
-                                                            <property name="label" value="Measures"/>
-                                                            <property name="name" value="measurecount"/>
-                                                            <property name="identifying" value="true"/>
-                                                            <property name="type" value="LONG"/>
-                                                        </bean>
-                                                    </list>
-                                                </property>
-                                            </bean>
-                                        </property>
-                                    </bean>
-                                </list>
-                            </property>
-                        </bean>
-                    </property>
+                <bean class="org.geomajas.configuration.PrimitiveAttributeInfo">
+                    <property name="label" value="primäres Ziel"/>
+                    <property name="name" value="ziel_p"/>
+                    <property name="identifying" value="true"/>
+                    <property name="type" value="STRING"/>
                 </bean>
+                <bean class="org.geomajas.configuration.PrimitiveAttributeInfo">
+                    <property name="label" value="Measures"/>
+                    <property name="name" value="measurecount"/>
+                    <property name="identifying" value="true"/>
+                    <property name="type" value="LONG"/>
+                </bean>
+
             </list>
         </property>
     </bean>
