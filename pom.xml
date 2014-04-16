@@ -95,6 +95,11 @@
 			<groupId>org.geomajas.plugin</groupId>
 			<artifactId>geomajas-layer-geotools</artifactId>
 		</dependency>
+        <dependency>
+            <groupId>org.geomajas.plugin</groupId>
+            <artifactId>geomajas-plugin-editing-gwt</artifactId>
+        </dependency>
+
 		<!-- Hibernate with h2/Geodb -->
 
 		<dependency>
@@ -151,7 +156,7 @@
 			<groupId>ch.qos.logback</groupId>
 			<artifactId>logback-classic</artifactId>
 		</dependency>
-	</dependencies>
+    </dependencies>
 
 	<build>
 		<plugins>
