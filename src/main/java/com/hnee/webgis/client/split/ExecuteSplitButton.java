@@ -65,6 +65,7 @@ public class ExecuteSplitButton extends ToolStripButton implements GeometrySplit
 							mapWidget.registerWorldPaintable(gfx);
 							splitResult.add(gfx);
 						}
+						// JAN: here you can save the geometry by executing a server command !!!
 					}
 				});
 			}
