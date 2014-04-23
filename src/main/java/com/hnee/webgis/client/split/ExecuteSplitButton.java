@@ -11,23 +11,28 @@
 
 package com.hnee.webgis.client.split;
 
-import com.smartgwt.client.widgets.events.ClickEvent;
-import com.smartgwt.client.widgets.events.ClickHandler;
-import com.smartgwt.client.widgets.toolbar.ToolStripButton;
+import java.util.ArrayList;
+import java.util.List;
+
 import org.geomajas.geometry.Geometry;
+import org.geomajas.gwt.client.command.AbstractCommandCallback;
+import org.geomajas.gwt.client.command.GwtCommand;
+import org.geomajas.gwt.client.command.GwtCommandDispatcher;
 import org.geomajas.gwt.client.gfx.paintable.GfxGeometry;
 import org.geomajas.gwt.client.gfx.style.ShapeStyle;
+import org.geomajas.gwt.client.map.feature.Feature;
 import org.geomajas.gwt.client.util.GeometryConverter;
 import org.geomajas.gwt.client.widget.MapWidget;
-import org.geomajas.plugin.editing.client.GeometryArrayFunction;
-import org.geomajas.plugin.editing.client.split.GeometrySplitService;
 import org.geomajas.plugin.editing.client.split.event.GeometrySplitStartEvent;
 import org.geomajas.plugin.editing.client.split.event.GeometrySplitStartHandler;
 import org.geomajas.plugin.editing.client.split.event.GeometrySplitStopEvent;
 import org.geomajas.plugin.editing.client.split.event.GeometrySplitStopHandler;
 
-import java.util.ArrayList;
-import java.util.List;
+import com.hnee.webgis.server.command.dto.SavePlanungRequest;
+import com.hnee.webgis.server.command.dto.SavePlanungResponse;
+import com.smartgwt.client.widgets.events.ClickEvent;
+import com.smartgwt.client.widgets.events.ClickHandler;
+import com.smartgwt.client.widgets.toolbar.ToolStripButton;
 
 /**
  * Button that executes the split calculation and displays the result on the map.
@@ -40,7 +45,7 @@ public class ExecuteSplitButton extends ToolStripButton implements GeometrySplit
 
 	private final MapWidget mapWidget;
 
-	public ExecuteSplitButton(final MapWidget mapWidget, final GeometrySplitService service) {
+	public ExecuteSplitButton(final MapWidget mapWidget, final FeatureSplitService service) {
 		this.mapWidget = mapWidget;
 		this.splitResult = new ArrayList<GfxGeometry>();
 
@@ -53,19 +58,35 @@ public class ExecuteSplitButton extends ToolStripButton implements GeometrySplit
 		addClickHandler(new ClickHandler() {
 
 			public void onClick(ClickEvent event) {
-				service.stop(new GeometryArrayFunction() {
+				service.stop(new FeatureFunction() {
 
-					public void execute(Geometry[] geometries) {
+					public void execute(Geometry[] geometries, Feature feature) {
 						// Now display the result on the map:
 						mapWidget.getMapModel().clearSelectedFeatures();
 
-						for (int i = 0; i < geometries.length; i++) {
-							GfxGeometry gfx = new GfxGeometry("split-result-" + i, GeometryConverter
-									.toGwt(geometries[i]), new ShapeStyle("#CC0000", .9f, "#660000", 1.0f, 3));
-							mapWidget.registerWorldPaintable(gfx);
-							splitResult.add(gfx);
-						}
+//						for (int i = 0; i < geometries.length; i++) {
+//							GfxGeometry gfx = new GfxGeometry("split-result-" + i, GeometryConverter
+//									.toGwt(geometries[i]), new ShapeStyle("#CC0000", .9f, "#660000", 1.0f, 3));
+//							mapWidget.registerWorldPaintable(gfx);
+//							splitResult.add(gfx);
+//						}
 						// JAN: here you can save the geometry by executing a server command !!!
+						SavePlanungRequest request = new SavePlanungRequest();
+						request.setId(Long.decode(feature.getId()));
+						Geometry geometry = new Geometry(Geometry.MULTI_POLYGON, 0, 5);
+						geometry.setGeometries(geometries);
+						request.setGeometry(geometry);
+						GwtCommand command = new GwtCommand(SavePlanungRequest.COMMAND);
+						command.setCommandRequest(request);
+						GwtCommandDispatcher.getInstance().execute(command,
+								new AbstractCommandCallback<SavePlanungResponse>() {
+
+									@Override
+									public void execute(SavePlanungResponse response) {
+										// refresh the layers	
+										mapWidget.getMapModel().refresh();
+									}
+								});
 					}
 				});
 			}

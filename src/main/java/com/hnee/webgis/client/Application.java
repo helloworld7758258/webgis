@@ -11,6 +11,14 @@
 
 package com.hnee.webgis.client;
 
+import org.geomajas.gwt.client.util.WidgetLayout;
+import org.geomajas.gwt.client.widget.Legend;
+import org.geomajas.gwt.client.widget.MapWidget;
+import org.geomajas.gwt.client.widget.Toolbar;
+import org.geomajas.plugin.editing.client.merge.GeometryMergeService;
+import org.geomajas.plugin.editing.gwt.client.GeometryEditorImpl;
+import org.geomajas.widget.layer.client.widget.CombinedLayertree;
+
 import com.google.gwt.core.client.EntryPoint;
 import com.google.gwt.core.client.GWT;
 import com.hnee.webgis.client.gui.SearchPanel;
@@ -20,6 +28,7 @@ import com.hnee.webgis.client.merge.ExecuteMergeButton;
 import com.hnee.webgis.client.merge.StartMergeProcessButton;
 import com.hnee.webgis.client.split.CancelSplitProcessButton;
 import com.hnee.webgis.client.split.ExecuteSplitButton;
+import com.hnee.webgis.client.split.FeatureSplitService;
 import com.hnee.webgis.client.split.StartSplitProcessButton;
 import com.hnee.webgis.client.widget.MenuBar;
 import com.smartgwt.client.types.ContentsType;
@@ -30,14 +39,6 @@ import com.smartgwt.client.widgets.layout.SectionStack;
 import com.smartgwt.client.widgets.layout.SectionStackSection;
 import com.smartgwt.client.widgets.layout.VLayout;
 import com.smartgwt.client.widgets.toolbar.ToolStrip;
-import org.geomajas.gwt.client.util.WidgetLayout;
-import org.geomajas.gwt.client.widget.Legend;
-import org.geomajas.gwt.client.widget.MapWidget;
-import org.geomajas.gwt.client.widget.Toolbar;
-import org.geomajas.plugin.editing.client.merge.GeometryMergeService;
-import org.geomajas.plugin.editing.client.split.GeometrySplitService;
-import org.geomajas.plugin.editing.gwt.client.GeometryEditorImpl;
-import org.geomajas.widget.layer.client.widget.CombinedLayertree;
 
 /**
  * Entry point and main class for GWT application. This class defines the layout
@@ -64,7 +65,7 @@ public class Application implements EntryPoint {
         final Toolbar toolbar = new Toolbar(map);
 
         GeometryEditorImpl editor = new GeometryEditorImpl(map);
-        GeometrySplitService splitService = new GeometrySplitService(editor.getEditService());
+        FeatureSplitService splitService = new FeatureSplitService(editor.getEditService());
         GeometryMergeService mergingService = new GeometryMergeService();
         mergingService.setPrecision(1);
 
