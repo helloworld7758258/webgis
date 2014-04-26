@@ -1,16 +1,16 @@
 package com.hnee.webgis.client;
 
-import java.util.ArrayList;
-import java.util.List;
-
+import com.google.gwt.user.client.Window;
+import com.smartgwt.client.widgets.HTMLPane;
+import com.smartgwt.client.widgets.events.ClickEvent;
 import org.geomajas.gwt.client.action.ToolbarAction;
 import org.geomajas.gwt.client.map.feature.Feature;
 import org.geomajas.gwt.client.map.layer.VectorLayer;
 import org.geomajas.gwt.client.util.WidgetLayout;
 import org.geomajas.gwt.client.widget.MapWidget;
 
-import com.smartgwt.client.widgets.HTMLPane;
-import com.smartgwt.client.widgets.events.ClickEvent;
+import java.util.ArrayList;
+import java.util.List;
 
 public class CallPlanningEditorToolbarAction extends ToolbarAction {
 
@@ -28,13 +28,24 @@ public class CallPlanningEditorToolbarAction extends ToolbarAction {
 
 	@Override
 	public void onClick(ClickEvent event) {
-		String url = "http://localhost:8080/hnee/planungseditor";
+		String url = "http://" + Window.Location.getHostName() + ":" + Window.Location.getPort() + "/hnee/planungseditor";
+        String layerID;
+        List<String> planningLayers = new ArrayList<String>() {
+            {
+                add(new String("clientLayerPlanningAreas"));
+                add(new String("clientLayerPlanningLines"));
+                add(new String("clientLayerPlanningPoints"));
+            }
+        };
 		List<Feature> features = new ArrayList<Feature>();
 		String geoobjects = "";
 		for (VectorLayer layer : mapWidget.getMapModel().getVectorLayers()) {
-			features.addAll(layer.getSelectedFeatureValues());
+            layerID = layer.getId();
+            if (planningLayers.contains(layerID)) {
+                features.addAll(layer.getSelectedFeatureValues());
+            }
 		}
-		// only zoom when there where really some items selected
+		// only update htmlPane when there were really some items selected
 
 		if (features.size() > 0) {
 			List<String> ids = new ArrayList<String>();

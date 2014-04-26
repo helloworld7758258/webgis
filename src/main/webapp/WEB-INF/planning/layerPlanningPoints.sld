@@ -23,7 +23,7 @@
                             <Mark>
                                 <WellKnownName>circle</WellKnownName>
                                 <Fill>
-                                    <CssParameter name="fill">#009933</CssParameter>
+                                    <CssParameter name="fill">#999999</CssParameter>
                                 </Fill>
                                 <Stroke>
                                     <CssParameter name="stroke">#000000</CssParameter>
@@ -36,7 +36,7 @@
                 </Rule>
                 <Rule>
                     <Name>planning</Name>
-                    <Title>Planung angelegt</Title>
+                    <Title>Ziel ohne Maßnahmen</Title>
                     <ogc:Filter>
                         <ogc:PropertyIsEqualTo>
                             <ogc:PropertyName>measurecount</ogc:PropertyName>
@@ -48,7 +48,7 @@
                             <Mark>
                                 <WellKnownName>circle</WellKnownName>
                                 <Fill>
-                                    <CssParameter name="fill">#0055CC</CssParameter>
+                                    <CssParameter name="fill">#FFFF33</CssParameter>
                                 </Fill>
                                 <Stroke>
                                     <CssParameter name="stroke">#000000</CssParameter>
@@ -61,7 +61,7 @@
                 </Rule>
                 <Rule>
                     <Name>measures</Name>
-                    <Title>Maßnahmen geplant</Title>
+                    <Title>Ziel mit Maßnahmen</Title>
                     <ogc:Filter>
                         <ogc:PropertyIsGreaterThan>
                             <ogc:PropertyName>measurecount</ogc:PropertyName>
@@ -73,7 +73,7 @@
                             <Mark>
                                 <WellKnownName>circle</WellKnownName>
                                 <Fill>
-                                    <CssParameter name="fill">#FF0000</CssParameter>
+                                    <CssParameter name="fill">#FF9933</CssParameter>
                                 </Fill>
                                 <Stroke>
                                     <CssParameter name="stroke">#000000</CssParameter>

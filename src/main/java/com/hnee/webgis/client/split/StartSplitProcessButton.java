@@ -11,18 +11,6 @@
 
 package com.hnee.webgis.client.split;
 
-import org.geomajas.gwt.client.controller.GraphicsController;
-import org.geomajas.gwt.client.map.event.FeatureDeselectedEvent;
-import org.geomajas.gwt.client.map.event.FeatureSelectedEvent;
-import org.geomajas.gwt.client.map.event.FeatureSelectionHandler;
-import org.geomajas.gwt.client.map.feature.Feature;
-import org.geomajas.gwt.client.widget.MapWidget;
-import org.geomajas.plugin.editing.client.split.GeometrySplitService;
-import org.geomajas.plugin.editing.client.split.event.GeometrySplitStartEvent;
-import org.geomajas.plugin.editing.client.split.event.GeometrySplitStartHandler;
-import org.geomajas.plugin.editing.client.split.event.GeometrySplitStopEvent;
-import org.geomajas.plugin.editing.client.split.event.GeometrySplitStopHandler;
-
 import com.google.web.bindery.event.shared.HandlerRegistration;
 import com.smartgwt.client.types.Alignment;
 import com.smartgwt.client.types.VerticalAlignment;
@@ -30,6 +18,16 @@ import com.smartgwt.client.widgets.Label;
 import com.smartgwt.client.widgets.events.ClickEvent;
 import com.smartgwt.client.widgets.events.ClickHandler;
 import com.smartgwt.client.widgets.toolbar.ToolStripButton;
+import org.geomajas.gwt.client.controller.GraphicsController;
+import org.geomajas.gwt.client.map.event.FeatureDeselectedEvent;
+import org.geomajas.gwt.client.map.event.FeatureSelectedEvent;
+import org.geomajas.gwt.client.map.event.FeatureSelectionHandler;
+import org.geomajas.gwt.client.map.feature.Feature;
+import org.geomajas.gwt.client.widget.MapWidget;
+import org.geomajas.plugin.editing.client.split.event.GeometrySplitStartEvent;
+import org.geomajas.plugin.editing.client.split.event.GeometrySplitStartHandler;
+import org.geomajas.plugin.editing.client.split.event.GeometrySplitStopEvent;
+import org.geomajas.plugin.editing.client.split.event.GeometrySplitStopHandler;
 
 /**
  * Toolbar button for adding inner rings to a polygon.
@@ -62,6 +60,8 @@ public class StartSplitProcessButton extends ToolStripButton implements Geometry
 		addClickHandler(new ClickHandler() {
 
 			public void onClick(ClickEvent event) {
+                // Ignore if planning polygon layer is not active
+                if (!mapWidget.getMapModel().getLayer("clientLayerPlanningAreas").isSelected()) return;
 				previousController = mapWidget.getController();
 				// JAN: i moved the feature selection here as it was called twice
 				registration = mapWidget.getMapModel().addFeatureSelectionHandler(new FeatureSelectionHandler() {

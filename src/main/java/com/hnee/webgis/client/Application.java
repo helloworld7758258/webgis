@@ -11,26 +11,12 @@
 
 package com.hnee.webgis.client;
 
-import org.geomajas.gwt.client.util.WidgetLayout;
-import org.geomajas.gwt.client.widget.Legend;
-import org.geomajas.gwt.client.widget.MapWidget;
-import org.geomajas.gwt.client.widget.Toolbar;
-import org.geomajas.plugin.editing.client.merge.GeometryMergeService;
-import org.geomajas.plugin.editing.gwt.client.GeometryEditorImpl;
-import org.geomajas.widget.layer.client.widget.CombinedLayertree;
-
 import com.google.gwt.core.client.EntryPoint;
 import com.google.gwt.core.client.GWT;
+import com.google.gwt.user.client.Window;
 import com.hnee.webgis.client.gui.SearchPanel;
 import com.hnee.webgis.client.i18n.ApplicationMessages;
-import com.hnee.webgis.client.merge.CancelMergeProcessButton;
-import com.hnee.webgis.client.merge.ExecuteMergeButton;
-import com.hnee.webgis.client.merge.StartMergeProcessButton;
-import com.hnee.webgis.client.split.CancelSplitProcessButton;
-import com.hnee.webgis.client.split.ExecuteSplitButton;
 import com.hnee.webgis.client.split.FeatureSplitService;
-import com.hnee.webgis.client.split.StartSplitProcessButton;
-import com.hnee.webgis.client.widget.MenuBar;
 import com.smartgwt.client.types.ContentsType;
 import com.smartgwt.client.types.VisibilityMode;
 import com.smartgwt.client.widgets.HTMLPane;
@@ -38,7 +24,13 @@ import com.smartgwt.client.widgets.layout.HLayout;
 import com.smartgwt.client.widgets.layout.SectionStack;
 import com.smartgwt.client.widgets.layout.SectionStackSection;
 import com.smartgwt.client.widgets.layout.VLayout;
-import com.smartgwt.client.widgets.toolbar.ToolStrip;
+import org.geomajas.gwt.client.util.WidgetLayout;
+import org.geomajas.gwt.client.widget.Legend;
+import org.geomajas.gwt.client.widget.MapWidget;
+import org.geomajas.gwt.client.widget.Toolbar;
+import org.geomajas.plugin.editing.client.merge.GeometryMergeService;
+import org.geomajas.plugin.editing.gwt.client.GeometryEditorImpl;
+import org.geomajas.widget.layer.client.widget.CombinedLayertree;
 
 /**
  * Entry point and main class for GWT application. This class defines the layout
@@ -60,6 +52,8 @@ public class Application implements EntryPoint {
     public void onModuleLoad() {
         WidgetLayout.legendVectorRowHeight = 10;
         WidgetLayout.legendRasterRowHeight = 10;
+
+        WidgetLayout.iconPan = "[ISOMORPHIC]/images/cursor_drag_hand.png";
 
         final MapWidget map = new MapWidget("mapMain", "app");
         final Toolbar toolbar = new Toolbar(map);
@@ -100,8 +94,9 @@ public class Application implements EntryPoint {
         // ---------------------------------------------------------------------
         final HTMLPane htmlPane = new HTMLPane();
         htmlPane.setShowEdges(true);
-        htmlPane.setContentsURL("http://localhost:8080/hnee/planungseditor?geoobjects");
+        htmlPane.setContentsURL("http://" + Window.Location.getHostName() + ":" + Window.Location.getPort() + "/hnee/planungseditor?geoobjects");
         htmlPane.setContentsType(ContentsType.PAGE);
+        htmlPane.setWidth(350);
 
         VLayout centerLayout = new VLayout();
         centerLayout.setBorder("2px solid #455469");
@@ -111,35 +106,35 @@ public class Application implements EntryPoint {
         // ---------------------------------------------------------------------
         // Create a split toolstrip
         // ---------------------------------------------------------------------
-        ToolStrip toolStripSplit = new ToolStrip();
-        toolStripSplit.setMembersMargin(2);
-        toolStripSplit.setWidth100();
-        toolStripSplit.addButton(new StartSplitProcessButton(splitService, map));
-        toolStripSplit.addSeparator();
-        toolStripSplit.addButton(new ExecuteSplitButton(map, splitService));
-        toolStripSplit.addButton(new CancelSplitProcessButton(map, splitService));
+//        ToolStrip toolStripSplit = new ToolStrip();
+//        toolStripSplit.setMembersMargin(2);
+//        toolStripSplit.setWidth100();
+//        toolStripSplit.addButton(new StartSplitProcessButton(splitService, map));
+//        toolStripSplit.addSeparator();
+//        toolStripSplit.addButton(new ExecuteSplitButton(map, splitService));
+//        toolStripSplit.addButton(new CancelSplitProcessButton(map, splitService));
 
         // ---------------------------------------------------------------------
         // Create a merge toolstrip
         // ---------------------------------------------------------------------
-        ToolStrip toolStripMerge = new ToolStrip();
-        toolStripMerge.setMembersMargin(2);
-        toolStripMerge.setWidth100();
-        toolStripMerge.addButton(new StartMergeProcessButton(map, mergingService));
-        toolStripMerge.addSeparator();
-        toolStripMerge.addButton(new ExecuteMergeButton(map, mergingService));
-        toolStripMerge.addButton(new CancelMergeProcessButton(map, mergingService));
+//        ToolStrip toolStripMerge = new ToolStrip();
+//        toolStripMerge.setMembersMargin(2);
+//        toolStripMerge.setWidth100();
+//        toolStripMerge.addButton(new StartMergeProcessButton(map, mergingService));
+//        toolStripMerge.addSeparator();
+//        toolStripMerge.addButton(new ExecuteMergeButton(map, mergingService));
+//        toolStripMerge.addButton(new CancelMergeProcessButton(map, mergingService));
 
         // ---------------------------------------------------------------------
         // Create an editing toolstrip (adding points and lines)
         // ---------------------------------------------------------------------
-        MenuBar editingToolStrip = new MenuBar(editor);
-
-        // Set toolbar options
-        toolbar.setButtonSize(WidgetLayout.toolbarSmallButtonSize);
-        toolbar.setBackgroundColor("#647386");
-        toolbar.setBackgroundImage("");
-        toolbar.setBorder("0px");
+//        MenuBar editingToolStrip = new MenuBar(editor);
+//
+//        // Set toolbar options
+//        toolbar.setButtonSize(WidgetLayout.toolbarSmallButtonSize);
+//        toolbar.setBackgroundColor("#647386");
+//        toolbar.setBackgroundImage("");
+//        toolbar.setBorder("0px");
 
         // ---------------------------------------------------------------------
         // Create the map layout (map and tabs):
@@ -165,9 +160,9 @@ public class Application implements EntryPoint {
 
         centerLayout.addMember(toolbar);
         centerLayout.addMember(mapLayout);
-        centerLayout.addMember(editingToolStrip);
-        centerLayout.addMember(toolStripSplit);
-        centerLayout.addMember(toolStripMerge);
+//        centerLayout.addMember(editingToolStrip);
+//        centerLayout.addMember(toolStripSplit);
+//        centerLayout.addMember(toolStripMerge);
 
         mainLayout.addMember(sectionStack);
         mainLayout.addMember(centerLayout);

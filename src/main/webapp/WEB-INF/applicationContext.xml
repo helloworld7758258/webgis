@@ -27,7 +27,7 @@ http://www.springframework.org/schema/tx http://www.springframework.org/schema/t
     <bean id="webgisConfig" class="org.springframework.beans.factory.config.PropertyPlaceholderConfigurer">
         <property name="placeholderPrefix" value="%{"/>
         <property name="placeholderSuffix" value="}"/>
-        <property name="location" value="file:///${user.home}/.cocoon/settings.properties"/>
+        <property name="location" value="file:///${user.home}/.pepgis/settings.properties"/>
     </bean>
 
     <bean name="security.securityInfo" class="org.geomajas.security.SecurityInfo">

@@ -42,6 +42,7 @@ http://www.springframework.org/schema/tx http://www.springframework.org/schema/t
 			</list>
 		</property>
 	</bean>
+
 	<bean name="ZoomPrevious" class="org.geomajas.configuration.client.ClientToolInfo" />
 
 	<bean name="ZoomNext" class="org.geomajas.configuration.client.ClientToolInfo" />
@@ -86,6 +87,7 @@ http://www.springframework.org/schema/tx http://www.springframework.org/schema/t
 			</list>
 		</property>
 	</bean>
+
 	<bean name="MarkedEditMode" class="org.geomajas.configuration.client.ClientToolInfo" />
 
 	<bean name="EditMode" class="org.geomajas.configuration.client.ClientToolInfo" />

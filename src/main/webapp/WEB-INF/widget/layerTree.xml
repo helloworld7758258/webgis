@@ -26,20 +26,28 @@ http://www.springframework.org/schema/tx http://www.springframework.org/schema/t
 				<property name="expanded" value="true" />
 				<property name="treeNodes">
 					<list>
-						<bean
-							class="org.geomajas.widget.layer.configuration.client.ClientBranchNodeInfo">
-							<property name="label" value="OSM" />
-							<property name="treeNodes">
-								<list>
-									<bean
-										class="org.geomajas.widget.layer.configuration.client.ClientLayerNodeInfo">
-										<property name="layerId" value="clientLayerOsm" />
-									</bean>
-								</list>
-							</property>
-							<property name="expanded" value="true" />
-						</bean>
-						<bean
+                        <bean
+                                class="org.geomajas.widget.layer.configuration.client.ClientBranchNodeInfo">
+                            <property name="label" value="Planung" />
+                            <property name="treeNodes">
+                                <list>
+                                    <bean
+                                            class="org.geomajas.widget.layer.configuration.client.ClientLayerNodeInfo">
+                                        <property name="layerId" value="clientLayerPlanningPoints" />
+                                    </bean>
+                                    <bean
+                                            class="org.geomajas.widget.layer.configuration.client.ClientLayerNodeInfo">
+                                        <property name="layerId" value="clientLayerPlanningLines" />
+                                    </bean>
+                                    <bean
+                                            class="org.geomajas.widget.layer.configuration.client.ClientLayerNodeInfo">
+                                        <property name="layerId" value="clientLayerPlanningAreas" />
+                                    </bean>
+                                </list>
+                            </property>
+                            <property name="expanded" value="true" />
+                        </bean>
+                        <bean
 							class="org.geomajas.widget.layer.configuration.client.ClientBranchNodeInfo">
 							<property name="label" value="Grenzen" />
 							<property name="treeNodes">
@@ -52,28 +60,19 @@ http://www.springframework.org/schema/tx http://www.springframework.org/schema/t
 							</property>
 							<property name="expanded" value="true" />
 						</bean>
-						<bean
-							class="org.geomajas.widget.layer.configuration.client.ClientBranchNodeInfo">
-							<property name="label" value="Planung" />
-							<property name="treeNodes">
-								<list>
-									<bean
-										class="org.geomajas.widget.layer.configuration.client.ClientLayerNodeInfo">
-										<property name="layerId" value="clientLayerPlanningAreas" />
-									</bean>
-									<bean
-										class="org.geomajas.widget.layer.configuration.client.ClientLayerNodeInfo">
-										<property name="layerId" value="clientLayerPlanningLines" />
-									</bean>
-									<bean
-										class="org.geomajas.widget.layer.configuration.client.ClientLayerNodeInfo">
-										<property name="layerId" value="clientLayerPlanningPoints" />
-									</bean>
-								</list>
-							</property>
-							<property name="expanded" value="true" />
-						</bean>
-
+                        <bean
+                                class="org.geomajas.widget.layer.configuration.client.ClientBranchNodeInfo">
+                            <property name="label" value="OSM" />
+                            <property name="treeNodes">
+                                <list>
+                                    <bean
+                                            class="org.geomajas.widget.layer.configuration.client.ClientLayerNodeInfo">
+                                        <property name="layerId" value="clientLayerOsm" />
+                                    </bean>
+                                </list>
+                            </property>
+                            <property name="expanded" value="true" />
+                        </bean>
 					</list>
 				</property>
 			</bean>

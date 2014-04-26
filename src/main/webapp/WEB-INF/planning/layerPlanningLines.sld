@@ -20,14 +20,14 @@
                     </ogc:Filter>
                     <LineSymbolizer>
                         <Stroke>
-                            <CssParameter name="stroke">#009933</CssParameter>
+                            <CssParameter name="stroke">#999999</CssParameter>
                             <CssParameter name="stroke-width">2</CssParameter>
                         </Stroke>
                     </LineSymbolizer>
                 </Rule>
                 <Rule>
                     <Name>planning</Name>
-                    <Title>Planung angelegt</Title>
+                    <Title>Ziel ohne Maßnahmen</Title>
                     <ogc:Filter>
                         <ogc:PropertyIsEqualTo>
                             <ogc:PropertyName>measurecount</ogc:PropertyName>
@@ -36,14 +36,14 @@
                     </ogc:Filter>
                     <LineSymbolizer>
                         <Stroke>
-                            <CssParameter name="stroke">#0055CC</CssParameter>
+                            <CssParameter name="stroke">#FFFF33</CssParameter>
                             <CssParameter name="stroke-width">2</CssParameter>
                         </Stroke>
                     </LineSymbolizer>
                 </Rule>
                 <Rule>
                     <Name>measures</Name>
-                    <Title>Maßnahmen geplant</Title>
+                    <Title>Ziel mit Maßnahmen</Title>
                     <ogc:Filter>
                         <ogc:PropertyIsGreaterThan>
                             <ogc:PropertyName>measurecount</ogc:PropertyName>
@@ -52,7 +52,7 @@
                     </ogc:Filter>
                     <LineSymbolizer>
                         <Stroke>
-                            <CssParameter name="stroke">#FF0000</CssParameter>
+                            <CssParameter name="stroke">#FF9933</CssParameter>
                             <CssParameter name="stroke-width">2</CssParameter>
                         </Stroke>
                     </LineSymbolizer>

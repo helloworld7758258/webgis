@@ -67,7 +67,7 @@ http://www.springframework.org/schema/tx http://www.springframework.org/schema/t
                     <property name="type" value="STRING"/>
                 </bean>
                 <bean class="org.geomajas.configuration.PrimitiveAttributeInfo">
-                    <property name="label" value="primäres Ziel"/>
+                    <property name="label" value="Ziel prioritär"/>
                     <property name="name" value="ziel_p"/>
                     <property name="identifying" value="true"/>
                     <property name="type" value="STRING"/>

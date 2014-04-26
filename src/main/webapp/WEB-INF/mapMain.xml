@@ -16,19 +16,19 @@ http://www.springframework.org/schema/util http://www.springframework.org/schema
 		<property name="lineSelectStyle">
 			<bean class="org.geomajas.configuration.FeatureStyleInfo">
 				<property name="fillOpacity" value="0" />
-				<property name="strokeColor" value="#FF6600" />
+				<property name="strokeColor" value="#33FFFF" />
 				<property name="strokeOpacity" value="1" />
 			</bean>
 		</property>
 		<property name="pointSelectStyle">
 			<bean class="org.geomajas.configuration.FeatureStyleInfo">
-				<property name="fillColor" value="#FFFF00" />
+				<property name="fillColor" value="#33FFFF" />
 			</bean>
 		</property>
 		<property name="polygonSelectStyle">
 			<bean class="org.geomajas.configuration.FeatureStyleInfo">
-				<property name="fillColor" value="#FFFF00" />
-				<property name="fillOpacity" value=".5" />
+				<property name="fillColor" value="#33FFFF" />
+				<property name="fillOpacity" value="1" />
 			</bean>
 		</property>
 		<property name="crs" value="EPSG:325833" />
