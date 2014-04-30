@@ -1,0 +1,81 @@
+<!--
+  ~ This is part of Geomajas, a GIS framework, http://www.geomajas.org/.
+  ~
+  ~ Copyright 2008-2014 Geosparc nv, http://www.geosparc.com/, Belgium.
+  ~
+  ~ The program is available in open source according to the GNU Affero
+  ~ General Public License. All contributions in this program are covered
+  ~ by the Geomajas Contributors License Agreement. For full licensing
+  ~ details, see LICENSE.txt in the project root.
+  -->
+
+<beans
+        xmlns="http://www.springframework.org/schema/beans"
+        xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+        xmlns:context="http://www.springframework.org/schema/context"
+        xsi:schemaLocation="
+http://www.springframework.org/schema/beans
+http://www.springframework.org/schema/beans/spring-beans-2.5.xsd
+http://www.springframework.org/schema/context
+http://www.springframework.org/schema/context/spring-context-2.5.xsd"
+        >
+
+    <bean name="layerDop20cWms" class="org.geomajas.layer.wms.WmsLayer">
+        <property name="layerInfo" ref="layerDop20cWmsInfo" />
+        <property name="baseWmsUrl" value="http://isk.geobasis-bb.de/ows/dop20c.php"/>
+        <property name="version" value="1.3.0"/>
+        <property name="format" value="image/jpeg"/>
+        <property name="styles" value=""/>
+        <property name="parameters">
+            <list>
+                <bean class="org.geomajas.configuration.Parameter">
+                    <property name="name" value="language"/>
+                    <property name="value" value="ger"/>
+                </bean>
+            </list>
+        </property>
+        <!--<property name="useProxy" value="true"/>-->
+    </bean>
+
+    <bean name="layerDop20cWmsInfo" class="org.geomajas.configuration.RasterLayerInfo">
+        <property name="crs" value="EPSG:325833"/>
+        <property name="maxExtent">
+            <bean class="org.geomajas.geometry.Bbox">
+                <property name="x" value="3.18303e+06"/>
+                <property name="y" value="5.64979e+06"/>
+                <property name="maxX" value="3.56459e+06"/>
+                <property name="maxY" value="5.97595e+06"/>
+            </bean>
+        </property>
+        <property name="zoomLevels">
+            <list>
+                <value>6.388019798183263E-6</value>
+                <value>1.2776039596366526E-5</value>
+                <value>2.555207919273305E-5</value>
+                <value>5.11041583854661E-5</value>
+                <value>1.022083167709322E-4</value>
+                <value>2.044166335418644E-4</value>
+                <value>4.088332670837288E-4</value>
+                <value>8.176665341674576E-4</value>
+                <value>0.0016353330683349153</value>
+                <value>0.0032706661366698306</value>
+                <value>0.006541332273339661</value>
+                <value>0.013082664546679322</value>
+                <value>0.026165329093358645</value>
+                <value>0.05233065818671729</value>
+                <value>0.10466131637343458</value>
+                <value>0.20932263274686916</value>
+                <value>0.4186452654937383</value>
+                <value>0.8372905309874766</value>
+                <value>1.6745810619749533</value>
+                <value>3.3491621239499065</value>
+                <value>13.396648496</value>
+                <value>26.793296992</value>
+            </list>
+        </property>
+        <property name="dataSourceName" value="DOP20c" />
+        <property name="tileWidth" value="512"/>
+        <property name="tileHeight" value="512"/>
+    </bean>
+
+</beans>
