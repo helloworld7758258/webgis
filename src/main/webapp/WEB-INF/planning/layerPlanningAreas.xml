@@ -40,7 +40,10 @@ http://www.springframework.org/schema/tx http://www.springframework.org/schema/t
 
     <bean class="org.geomajas.configuration.NamedStyleInfo" name="layerPlanningAreasStyleInfo">
         <property name="sldLocation" value="WEB-INF/planning/layerPlanningAreas.sld"/>
+
     </bean>
+
+
 
     <bean class="org.geomajas.configuration.FeatureInfo" name="layerPlanningAreasFeatureInfo">
         <property name="dataSourceName" value="com.hnee.webgis.server.MPlanung"/>
@@ -67,13 +70,19 @@ http://www.springframework.org/schema/tx http://www.springframework.org/schema/t
                     <property name="type" value="STRING"/>
                 </bean>
                 <bean class="org.geomajas.configuration.PrimitiveAttributeInfo">
+                    <property name="label" value="GebNr"/>
+                    <property name="name" value="gebnra"/>
+                    <property name="identifying" value="true"/>
+                    <property name="type" value="STRING"/>
+                </bean>
+                <bean class="org.geomajas.configuration.PrimitiveAttributeInfo">
                     <property name="label" value="Ziel prioritär"/>
                     <property name="name" value="ziel_p"/>
                     <property name="identifying" value="true"/>
                     <property name="type" value="STRING"/>
                 </bean>
                 <bean class="org.geomajas.configuration.PrimitiveAttributeInfo">
-                    <property name="label" value="Measures"/>
+                    <property name="label" value="Anzahl Maßnahmen"/>
                     <property name="name" value="measurecount"/>
                     <property name="identifying" value="true"/>
                     <property name="type" value="LONG"/>

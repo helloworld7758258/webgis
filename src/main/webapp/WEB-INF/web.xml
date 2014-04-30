@@ -21,9 +21,18 @@
 			WEB-INF/applicationContext.xml
 			WEB-INF/tools.xml
 			WEB-INF/mapMain.xml
-			WEB-INF/clientLayerOsm.xml
-			WEB-INF/layerOsm.xml
-			
+
+			<!--  Hibernate configuration -->
+			WEB-INF/spring-hibernate.xml
+
+            <!-- Layer based on WMS -->
+            WEB-INF/wms/clientLayerDop20cWms.xml
+            WEB-INF/wms/layerDop20cWms.xml
+
+            <!-- Layer based on OSM -->
+			<!--WEB-INF/osm/clientLayerOsm.xml-->
+			<!--WEB-INF/osm/layerOsm.xml-->
+
 			<!-- Layers based on shapefile -->
 			WEB-INF/shp/clientLayerFfh.xml
 			WEB-INF/shp/layerFfh.xml
@@ -35,9 +44,6 @@
 			WEB-INF/planning/layerPlanningAreas.xml
 			WEB-INF/planning/layerPlanningLines.xml
 			WEB-INF/planning/layerPlanningPoints.xml
-			
-			<!--  Hibernate configuration -->
-			WEB-INF/spring-hibernate.xml
 			
 			<!-- widgets -->
 			WEB-INF/widget/layerTree.xml

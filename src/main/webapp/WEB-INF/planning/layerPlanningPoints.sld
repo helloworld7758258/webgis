@@ -30,7 +30,7 @@
                                     <CssParameter name="stroke-width">1</CssParameter>
                                 </Stroke>
                             </Mark>
-                            <Size>8</Size>
+                            <Size>15</Size>
                         </Graphic>
                     </PointSymbolizer>
                 </Rule>
@@ -83,6 +83,50 @@
                             <Size>8</Size>
                         </Graphic>
                     </PointSymbolizer>
+                    <TextSymbolizer>
+                        <Label>
+                            <ogc:PropertyName>gebnra</ogc:PropertyName>
+                        </Label>
+                        <Font>
+                            <CssParameter name="font-family">Arial</CssParameter>
+                            <CssParameter name="font-size">10</CssParameter>
+                        </Font>
+                        <LabelPlacement>
+                            <PointPlacement>
+                                <AnchorPoint>
+                                    <AnchorPointX>0</AnchorPointX>
+                                    <AnchorPointY>0</AnchorPointY>
+                                </AnchorPoint>
+                                <Displacement>
+                                    <DisplacementX>0</DisplacementX>
+                                    <DisplacementY>15</DisplacementY>
+                                </Displacement>
+                                <Rotation>
+                                    <ogc:Function name="if_then_else">
+                                        <ogc:Function name="PropertyExists">
+                                            <ogc:PropertyName>ORIENTATION</ogc:PropertyName>
+                                        </ogc:Function>
+                                        <ogc:Mul>
+                                            <ogc:PropertyName>ORIENTATION</ogc:PropertyName>
+                                            <ogc:Literal>-1</ogc:Literal>
+                                        </ogc:Mul>
+                                        <ogc:Literal>0</ogc:Literal>
+                                    </ogc:Function>
+                                </Rotation>
+                            </PointPlacement>
+                        </LabelPlacement>
+                        <Halo>
+                            <Radius>2</Radius>
+                            <Fill>
+                                <CssParameter name="fill">#FFFFFF</CssParameter>
+                            </Fill>
+                        </Halo>
+                        <Fill>
+                            <CssParameter name="fill">#0000FF</CssParameter>
+                        </Fill>
+                        <VendorOption name="maxDisplacement">50</VendorOption>
+                    </TextSymbolizer>
+
                 </Rule>
             </FeatureTypeStyle>
         </UserStyle>

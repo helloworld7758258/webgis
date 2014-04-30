@@ -30,7 +30,7 @@ http://www.springframework.org/schema/tx http://www.springframework.org/schema/t
 		<property name="snappingRules">
 			<list>
 				<bean class="org.geomajas.configuration.SnappingRuleInfo">
-					<property name="distance" value="10" />
+					<property name="distance" value="5" />
 					<property name="type" value="NEAREST_POINT" />
 					<property name="layerId" value="planningAreasLayer" />
 				</bean>

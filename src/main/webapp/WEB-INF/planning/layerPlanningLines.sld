@@ -24,6 +24,11 @@
                             <CssParameter name="stroke-width">2</CssParameter>
                         </Stroke>
                     </LineSymbolizer>
+                    <TextSymbolizer>
+                        <Label>
+                            <ogc:PropertyName>gebnra</ogc:PropertyName>
+                        </Label>
+                    </TextSymbolizer>
                 </Rule>
                 <Rule>
                     <Name>planning</Name>
@@ -40,6 +45,11 @@
                             <CssParameter name="stroke-width">2</CssParameter>
                         </Stroke>
                     </LineSymbolizer>
+                    <TextSymbolizer>
+                        <Label>
+                            <ogc:PropertyName>gebnra</ogc:PropertyName>
+                        </Label>
+                    </TextSymbolizer>
                 </Rule>
                 <Rule>
                     <Name>measures</Name>
@@ -56,6 +66,11 @@
                             <CssParameter name="stroke-width">2</CssParameter>
                         </Stroke>
                     </LineSymbolizer>
+                    <TextSymbolizer>
+                        <Label>
+                            <ogc:PropertyName>gebnra</ogc:PropertyName>
+                        </Label>
+                    </TextSymbolizer>
                 </Rule>
             </FeatureTypeStyle>
         </UserStyle>

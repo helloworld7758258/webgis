@@ -75,15 +75,15 @@ http://www.springframework.org/schema/util http://www.springframework.org/schema
 		</property>
 		<property name="maxBounds">
 			<bean class="org.geomajas.geometry.Bbox">
-				<property name="x" value="3250120" />
-				<property name="y" value="5690396" />
-				<property name="width" value="233559" />
-				<property name="height" value="244634" />
+                <property name="x" value="3.18303e+06"/>
+                <property name="y" value="5.64979e+06"/>
+                <property name="maxX" value="3.56459e+06"/>
+                <property name="maxY" value="5.97595e+06"/>
 			</bean>
 		</property>
 		<property name="layers">
 			<list>
-				<ref bean="clientLayerOsm" />
+                <ref bean="clientLayerDop20cWms"/>
 				<ref bean="clientLayerFfh" />
 				<ref bean="clientLayerPlanningAreas" />
 				<ref bean="clientLayerPlanningLines" />

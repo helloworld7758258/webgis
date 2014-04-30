@@ -30,6 +30,9 @@ public class MPlanung {
     @Column(name="FK_ZIEL_P")
     private String ziel_p;
 
+    @Column(name="GEBNRA")
+    private String gebnra;
+
     @Type(type = "org.hibernatespatial.GeometryUserType")
     @Column(name = "GEOM")
     private Geometry geometry;
@@ -96,5 +99,13 @@ public class MPlanung {
 
     public void setGeometryType(String geometryType) {
         this.geometryType = geometryType;
+    }
+
+    public String getGebnra() {
+        return gebnra;
+    }
+
+    public void setGebnra(String gebnra) {
+        this.gebnra = gebnra;
     }
 }

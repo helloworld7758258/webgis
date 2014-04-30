@@ -16,7 +16,6 @@ import com.google.gwt.core.client.GWT;
 import com.google.gwt.user.client.Window;
 import com.hnee.webgis.client.gui.SearchPanel;
 import com.hnee.webgis.client.i18n.ApplicationMessages;
-import com.hnee.webgis.client.split.FeatureSplitService;
 import com.smartgwt.client.types.ContentsType;
 import com.smartgwt.client.types.VisibilityMode;
 import com.smartgwt.client.widgets.HTMLPane;
@@ -28,8 +27,6 @@ import org.geomajas.gwt.client.util.WidgetLayout;
 import org.geomajas.gwt.client.widget.Legend;
 import org.geomajas.gwt.client.widget.MapWidget;
 import org.geomajas.gwt.client.widget.Toolbar;
-import org.geomajas.plugin.editing.client.merge.GeometryMergeService;
-import org.geomajas.plugin.editing.gwt.client.GeometryEditorImpl;
 import org.geomajas.widget.layer.client.widget.CombinedLayertree;
 
 /**
@@ -58,10 +55,10 @@ public class Application implements EntryPoint {
         final MapWidget map = new MapWidget("mapMain", "app");
         final Toolbar toolbar = new Toolbar(map);
 
-        GeometryEditorImpl editor = new GeometryEditorImpl(map);
-        FeatureSplitService splitService = new FeatureSplitService(editor.getEditService());
-        GeometryMergeService mergingService = new GeometryMergeService();
-        mergingService.setPrecision(1);
+//        GeometryEditorImpl editor = new GeometryEditorImpl(map);
+//        FeatureSplitService splitService = new FeatureSplitService(editor.getEditService());
+//        GeometryMergeService mergingService = new GeometryMergeService();
+//        mergingService.setPrecision(1);
 
         HLayout mainLayout = new HLayout();
         mainLayout.setWidth100();
@@ -96,7 +93,7 @@ public class Application implements EntryPoint {
         htmlPane.setShowEdges(true);
         htmlPane.setContentsURL("http://" + Window.Location.getHostName() + ":" + Window.Location.getPort() + "/hnee/planungseditor?geoobjects");
         htmlPane.setContentsType(ContentsType.PAGE);
-        htmlPane.setWidth(350);
+        htmlPane.setWidth(450);
 
         VLayout centerLayout = new VLayout();
         centerLayout.setBorder("2px solid #455469");

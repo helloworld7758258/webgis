@@ -62,12 +62,12 @@ http://www.springframework.org/schema/tx http://www.springframework.org/schema/t
 						</bean>
                         <bean
                                 class="org.geomajas.widget.layer.configuration.client.ClientBranchNodeInfo">
-                            <property name="label" value="OSM" />
+                            <property name="label" value="WMS" />
                             <property name="treeNodes">
                                 <list>
                                     <bean
                                             class="org.geomajas.widget.layer.configuration.client.ClientLayerNodeInfo">
-                                        <property name="layerId" value="clientLayerOsm" />
+                                        <property name="layerId" value="clientLayerDop20cWms" />
                                     </bean>
                                 </list>
                             </property>
