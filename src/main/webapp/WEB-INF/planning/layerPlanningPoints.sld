@@ -33,6 +33,19 @@
                             <Size>15</Size>
                         </Graphic>
                     </PointSymbolizer>
+                    <TextSymbolizer>
+                        <Label>
+                            <ogc:PropertyName>name</ogc:PropertyName>
+                        </Label>
+                        <Font>
+                            <CssParameter name="font-family">Arial</CssParameter>
+                            <CssParameter name="font-size">8</CssParameter>
+                        </Font>
+                        <Fill>
+                            <CssParameter name="fill">#000000</CssParameter>
+                        </Fill>
+                        <VendorOption name="maxDisplacement">50</VendorOption>
+                    </TextSymbolizer>
                 </Rule>
                 <Rule>
                     <Name>planning</Name>
@@ -58,6 +71,19 @@
                             <Size>8</Size>
                         </Graphic>
                     </PointSymbolizer>
+                    <TextSymbolizer>
+                        <Label>
+                            <ogc:PropertyName>ziel_p</ogc:PropertyName>
+                        </Label>
+                        <Font>
+                            <CssParameter name="font-family">Arial</CssParameter>
+                            <CssParameter name="font-size">10</CssParameter>
+                        </Font>
+                        <Fill>
+                            <CssParameter name="fill">#000000</CssParameter>
+                        </Fill>
+                        <VendorOption name="maxDisplacement">50</VendorOption>
+                    </TextSymbolizer>
                 </Rule>
                 <Rule>
                     <Name>measures</Name>
@@ -89,7 +115,7 @@
                         </Label>
                         <Font>
                             <CssParameter name="font-family">Arial</CssParameter>
-                            <CssParameter name="font-size">10</CssParameter>
+                            <CssParameter name="font-size">14</CssParameter>
                         </Font>
                         <LabelPlacement>
                             <PointPlacement>
@@ -101,18 +127,7 @@
                                     <DisplacementX>0</DisplacementX>
                                     <DisplacementY>15</DisplacementY>
                                 </Displacement>
-                                <Rotation>
-                                    <ogc:Function name="if_then_else">
-                                        <ogc:Function name="PropertyExists">
-                                            <ogc:PropertyName>ORIENTATION</ogc:PropertyName>
-                                        </ogc:Function>
-                                        <ogc:Mul>
-                                            <ogc:PropertyName>ORIENTATION</ogc:PropertyName>
-                                            <ogc:Literal>-1</ogc:Literal>
-                                        </ogc:Mul>
-                                        <ogc:Literal>0</ogc:Literal>
-                                    </ogc:Function>
-                                </Rotation>
+                                <Rotation>-45</Rotation>
                             </PointPlacement>
                         </LabelPlacement>
                         <Halo>
