@@ -47,6 +47,8 @@
 			
 			<!-- widgets -->
 			WEB-INF/widget/layerTree.xml
+			
+			classpath:org/geomajas/plugin/rasterizing/DefaultCachedAndRasterizedPipelines.xml
 		</param-value>
 	</context-param>
 

@@ -90,6 +90,11 @@
             <groupId>org.geomajas.plugin</groupId>
             <artifactId>geomajas-layer-wms</artifactId>
         </dependency>
+        
+        <dependency>
+            <groupId>org.geomajas.plugin</groupId>
+            <artifactId>geomajas-plugin-rasterizing</artifactId>
+        </dependency>
 
 		<dependency>
 			<groupId>org.geomajas.plugin</groupId>
